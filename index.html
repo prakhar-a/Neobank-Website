@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cashi: Pay with Stablecoin Anywhere Using Virtual Crypto Card</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background: #f0f0f0;
       color: #1a1a1a;
       overflow-x: hidden;
@@ -25,7 +26,7 @@
       border-bottom: 1px solid #e0e0e0;
     }
     .nav-logo {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 22px; font-weight: 700;
       color: #1a1a1a; text-decoration: none;
       letter-spacing: -0.5px;
@@ -38,7 +39,7 @@
       border: none; border-radius: 100px;
       padding: 12px 24px; font-size: 14px; font-weight: 500;
       cursor: pointer; text-decoration: none; display: inline-block;
-      font-family: 'Inter', sans-serif; transition: background 0.2s;
+      font-family: 'DM Sans', sans-serif; transition: background 0.2s;
       white-space: nowrap;
     }
     .btn-dark:hover { background: #333; }
@@ -47,7 +48,7 @@
       padding: 10px 22px; font-size: 14px; font-weight: 500;
       cursor: pointer; background: transparent; color: #1a1a1a;
       text-decoration: none; display: inline-block;
-      transition: all 0.2s; font-family: 'Inter', sans-serif;
+      transition: all 0.2s; font-family: 'DM Sans', sans-serif;
     }
     .btn-outline:hover { background: #1a1a1a; color: #fff; }
 
@@ -65,7 +66,7 @@
       padding: 56px 48px; display: flex; flex-direction: column; justify-content: space-between;
     }
     .hero-title {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 52px; font-weight: 800; color: #fff; line-height: 1.06;
     }
     .hero-sub {
@@ -81,7 +82,7 @@
     .hero-form input {
       border: none; outline: none; font-size: 14px;
       flex: 1; background: transparent; color: #333;
-      font-family: 'Inter', sans-serif; min-width: 0;
+      font-family: 'DM Sans', sans-serif; min-width: 0;
     }
     .hero-form input::placeholder { color: #aaa; }
     .hero-right { overflow: hidden; position: relative; }
@@ -90,7 +91,7 @@
     /* ─── BEYOND BORDERS ───────────────────────────────── */
     .beyond-section { padding: 64px 48px; max-width: 1240px; margin: 0 auto; }
     .section-heading {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 38px; font-weight: 700; margin-bottom: 28px; color: #1a1a1a;
     }
     .three-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -102,7 +103,7 @@
     .img-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .img-card-overlay { position: absolute; top: 0; left: 0; right: 0; padding: 20px; }
     .img-card-text {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3;
       text-shadow: 0 1px 6px rgba(0,0,0,0.25);
     }
@@ -157,21 +158,21 @@
       box-shadow: 0 20px 60px rgba(255,69,0,0.25);
     }
     .crypto-card-visual-logo {
-      font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 700;
+      font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700;
       color: rgba(255,255,255,0.95); letter-spacing: -0.3px;
     }
     .crypto-card-visual-num {
       font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 3px;
     }
     .stable-title {
-      font-family: 'Outfit', sans-serif; font-size: 36px; font-weight: 700; margin-bottom: 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 36px; font-weight: 700; margin-bottom: 8px;
     }
     .stable-sub { font-size: 13px; color: #888; margin-bottom: 48px; }
     .features-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 760px; margin: 0 auto; }
     .feat-item { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
     .feat-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #999; }
     .feat-icon svg { width: 32px; height: 32px; }
-    .feat-title { font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 700; color: #1a1a1a; }
+    .feat-title { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; color: #1a1a1a; }
     .feat-desc { font-size: 13px; color: #888; line-height: 1.6; }
 
     /* ─── SPLIT SECTION ────────────────────────────────── */
@@ -201,7 +202,7 @@
       background: linear-gradient(135deg, #FF6B2B, #FF4500);
       border-radius: 12px; padding: 14px; margin-bottom: 10px; color: #fff;
     }
-    .phone-card-brand { font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700; }
+    .phone-card-brand { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; }
     .phone-card-label { font-size: 9px; opacity: 0.7; margin-top: 2px; }
     .phone-card-num { font-size: 11px; letter-spacing: 2px; margin-top: 18px; opacity: 0.85; }
     .phone-card-expiry { font-size: 9px; opacity: 0.6; margin-top: 3px; }
@@ -230,7 +231,7 @@
     }
     .dark-label { font-size: 14px; font-weight: 600; color: #FF4500; margin-bottom: 16px; }
     .dark-title {
-      font-family: 'Outfit', sans-serif; font-size: 38px; font-weight: 700;
+      font-family: 'DM Sans', sans-serif; font-size: 38px; font-weight: 700;
       color: #fff; line-height: 1.2; margin-bottom: 14px;
     }
     .dark-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 32px; }
@@ -258,7 +259,7 @@
       box-shadow: 0 20px 60px rgba(255,69,0,0.3);
       animation: float3 4s ease-in-out infinite;
     }
-    .coin-card-logo { font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.9); }
+    .coin-card-logo { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.9); }
     .coin-card-num { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 2px; }
     @keyframes float1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
     @keyframes float2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
@@ -276,7 +277,7 @@
     .faq-q {
       display: flex; align-items: center; justify-content: space-between;
       padding: 20px 0; cursor: pointer; user-select: none;
-      font-family: 'Outfit', sans-serif; font-size: 16px; font-weight: 600; color: #1a1a1a;
+      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: #1a1a1a;
       gap: 16px;
     }
     .faq-q:hover { color: #FF4500; }
@@ -300,13 +301,13 @@
       background: #fff; border-radius: 24px; padding: 40px 48px;
       display: flex; align-items: center; justify-content: space-between; gap: 24px;
     }
-    .cta-title { font-family: 'Outfit', sans-serif; font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+    .cta-title { font-family: 'DM Sans', sans-serif; font-size: 28px; font-weight: 700; margin-bottom: 6px; }
     .cta-sub { font-size: 14px; color: #888; }
 
     /* ─── FOOTER ───────────────────────────────────────── */
     footer { padding: 0 48px 48px; max-width: 1240px; margin: 0 auto; }
     .footer-wordmark {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       font-size: clamp(80px, 14vw, 200px);
       font-weight: 900; color: #FF4500; line-height: 0.95;
       letter-spacing: -6px; margin-bottom: 32px; user-select: none;
