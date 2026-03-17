@@ -1,804 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cashi: Pay with Stablecoin Anywhere Using Virtual Crypto Card</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; overflow-x: hidden; }
-    body {
-      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f0f0f0;
-      color: #1a1a1a;
-      overflow-x: hidden;
-    }
-
-    /* ─── NAV ──────────────────────────────────────────── */
-    .nav {
-      position: sticky; top: 0; z-index: 200;
-      background: #f0f0f0;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 16px 48px;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    .nav-logo {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 22px; font-weight: 700;
-      color: #1a1a1a; text-decoration: none;
-      letter-spacing: -0.5px;
-    }
-    .nav-logo span { color: #FF4500; }
-
-    /* ─── BUTTONS ──────────────────────────────────────── */
-    .btn-dark {
-      background: #111; color: #fff;
-      border: none; border-radius: 100px;
-      padding: 12px 24px; font-size: 14px; font-weight: 500;
-      cursor: pointer; text-decoration: none; display: inline-block;
-      font-family: 'DM Sans', sans-serif; transition: background 0.2s;
-      white-space: nowrap;
-    }
-    .btn-dark:hover { background: #333; }
-    .btn-outline {
-      border: 1.5px solid #1a1a1a; border-radius: 100px;
-      padding: 10px 22px; font-size: 14px; font-weight: 500;
-      cursor: pointer; background: transparent; color: #1a1a1a;
-      text-decoration: none; display: inline-block;
-      transition: all 0.2s; font-family: 'DM Sans', sans-serif;
-    }
-    .btn-outline:hover { background: #1a1a1a; color: #fff; }
-
-    /* ─── WRAPPER ──────────────────────────────────────── */
-    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
-
-    /* ─── HERO ─────────────────────────────────────────── */
-    .hero-wrap { padding: 20px 48px 56px; max-width: 1240px; margin: 0 auto; }
-    .hero-card {
-      background: #FF4500; border-radius: 24px; overflow: hidden;
-      display: grid; grid-template-columns: 1fr 1fr;
-      min-height: 480px;
-    }
-    .hero-left {
-      padding: 56px 48px; display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .hero-title {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 52px; font-weight: 800; color: #fff; line-height: 1.06;
-    }
-    .hero-sub {
-      font-size: 15px; color: rgba(255,255,255,0.9);
-      line-height: 1.65; max-width: 320px; margin-top: 20px;
-    }
-    .hero-tagline { font-size: 15px; color: rgba(255,255,255,0.85); margin-top: 10px; }
-    .hero-form {
-      display: flex; background: #fff; border-radius: 100px;
-      padding: 6px 6px 6px 20px; align-items: center;
-      max-width: 360px; margin-top: auto; gap: 6px;
-    }
-    .hero-form input {
-      border: none; outline: none; font-size: 14px;
-      flex: 1; background: transparent; color: #333;
-      font-family: 'DM Sans', sans-serif; min-width: 0;
-    }
-    .hero-form input::placeholder { color: #aaa; }
-    .hero-right { overflow: hidden; position: relative; }
-    .hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-
-    /* ─── BEYOND BORDERS ───────────────────────────────── */
-    .beyond-section { padding: 64px 48px; max-width: 1240px; margin: 0 auto; }
-    .section-heading {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 38px; font-weight: 700; margin-bottom: 28px; color: #1a1a1a;
-    }
-    .three-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-
-    .img-card {
-      border-radius: 20px; overflow: hidden; position: relative;
-      aspect-ratio: 1; background: #c8c8c8;
-    }
-    .img-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .img-card-overlay { position: absolute; top: 0; left: 0; right: 0; padding: 20px; }
-    .img-card-text {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 20px; font-weight: 700; color: #fff; line-height: 1.3;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.25);
-    }
-    .notif-overlay {
-      position: absolute; bottom: 14px; left: 14px; right: 14px;
-      background: #fff; border-radius: 14px; padding: 12px 14px;
-      display: flex; align-items: center; gap: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.14);
-    }
-    .notif-icon {
-      width: 36px; height: 36px; background: #FF4500; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .notif-icon svg { width: 18px; height: 18px; fill: #fff; }
-    .notif-details { flex: 1; min-width: 0; }
-    .notif-label { font-weight: 600; font-size: 13px; color: #1a1a1a; }
-    .notif-sub { font-size: 11px; color: #888; margin-top: 2px; }
-    .notif-right { text-align: right; flex-shrink: 0; }
-    .notif-amount { font-size: 13px; font-weight: 600; color: #1a1a1a; }
-    .notif-status { font-size: 11px; color: #aaa; margin-top: 2px; }
-
-    /* "You received" overlay variant */
-    .notif-received { background: rgba(255,255,255,0.96); }
-    .notif-received .notif-badge {
-      background: #2A9D8F; color: #fff; font-size: 10px;
-      font-weight: 700; border-radius: 6px; padding: 2px 6px;
-      white-space: nowrap;
-    }
-
-    /* ─── MARQUEE ──────────────────────────────────────── */
-    .marquee-section { overflow: hidden; padding: 40px 0; background: #f0f0f0; }
-    .marquee-inner { display: flex; gap: 20px; width: max-content; animation: ticker 40s linear infinite; }
-    .flag-circle {
-      width: 72px; height: 72px; border-radius: 50%; overflow: hidden;
-      background: #ddd; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 44px; line-height: 1;
-    }
-    @keyframes ticker {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* ─── STABLECOINS ──────────────────────────────────── */
-    .stable-section { padding: 40px 48px 64px; text-align: center; max-width: 1240px; margin: 0 auto; }
-    .crypto-card-visual {
-      width: 220px; height: 138px;
-      background: linear-gradient(135deg, #FFB07A 0%, #FF6B2B 50%, #FF4500 100%);
-      border-radius: 16px; margin: 0 auto 40px;
-      display: flex; flex-direction: column; justify-content: space-between;
-      padding: 18px 20px;
-      box-shadow: 0 20px 60px rgba(255,69,0,0.25);
-    }
-    .crypto-card-visual-logo {
-      font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700;
-      color: rgba(255,255,255,0.95); letter-spacing: -0.3px;
-    }
-    .crypto-card-visual-num {
-      font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 3px;
-    }
-    .stable-title {
-      font-family: 'DM Sans', sans-serif; font-size: 36px; font-weight: 700; margin-bottom: 8px;
-    }
-    .stable-sub { font-size: 13px; color: #888; margin-bottom: 48px; }
-    .features-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 760px; margin: 0 auto; }
-    .feat-item { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; }
-    .feat-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #999; }
-    .feat-icon svg { width: 32px; height: 32px; }
-    .feat-title { font-family: 'DM Sans', sans-serif; font-size: 17px; font-weight: 700; color: #1a1a1a; }
-    .feat-desc { font-size: 13px; color: #888; line-height: 1.6; }
-
-    /* ─── SPLIT SECTION ────────────────────────────────── */
-    .split-section {
-      padding: 0 48px 64px; max-width: 1240px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center;
-    }
-    .split-img { border-radius: 20px; overflow: hidden; position: relative; min-height: 400px; background: #c8c8c8; }
-    .split-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .split-phone { display: flex; align-items: center; justify-content: center; padding: 20px; }
-
-    /* Phone mockup */
-    .phone {
-      width: 230px; background: #fff; border-radius: 40px;
-      border: 8px solid #1a1a1a;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.18); overflow: hidden;
-    }
-    .phone-notch {
-      background: #1a1a1a; height: 26px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .phone-notch-pill {
-      width: 72px; height: 10px; background: #000; border-radius: 10px;
-    }
-    .phone-screen { padding: 10px; }
-    .phone-card-inner {
-      background: linear-gradient(135deg, #FF6B2B, #FF4500);
-      border-radius: 12px; padding: 14px; margin-bottom: 10px; color: #fff;
-    }
-    .phone-card-brand { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; }
-    .phone-card-label { font-size: 9px; opacity: 0.7; margin-top: 2px; }
-    .phone-card-num { font-size: 11px; letter-spacing: 2px; margin-top: 18px; opacity: 0.85; }
-    .phone-card-expiry { font-size: 9px; opacity: 0.6; margin-top: 3px; }
-    .phone-apple-add {
-      display: flex; align-items: center; gap: 8px;
-      padding: 9px 10px; border-radius: 8px; background: #f7f7f7;
-      font-size: 10px; font-weight: 500; margin-bottom: 6px; cursor: pointer;
-    }
-    .phone-apple-add svg { width: 14px; height: 14px; }
-    .phone-close-btn { margin-left: auto; color: #aaa; font-size: 14px; line-height: 1; cursor: pointer; }
-    .phone-menu-row {
-      display: flex; align-items: center; gap: 8px;
-      padding: 9px 4px; border-bottom: 1px solid #f5f5f5;
-      font-size: 11px; color: #1a1a1a;
-    }
-    .phone-menu-row:last-child { border-bottom: none; }
-    .phone-menu-row svg { width: 14px; height: 14px; color: #aaa; flex-shrink: 0; }
-    .phone-menu-arrow { margin-left: auto; color: #ccc; font-size: 12px; }
-
-    /* ─── DARK "CASH IN, CASH OUT" ─────────────────────── */
-    .dark-wrap { padding: 0 48px 64px; max-width: 1240px; margin: 0 auto; }
-    .dark-card {
-      background: #111; border-radius: 24px;
-      padding: 56px 56px; display: grid; grid-template-columns: 1fr 1fr;
-      gap: 40px; align-items: center; overflow: hidden;
-    }
-    .dark-label { font-size: 14px; font-weight: 600; color: #FF4500; margin-bottom: 16px; }
-    .dark-title {
-      font-family: 'DM Sans', sans-serif; font-size: 38px; font-weight: 700;
-      color: #fff; line-height: 1.2; margin-bottom: 14px;
-    }
-    .dark-desc { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 32px; }
-    .chain-row { display: flex; gap: 10px; flex-wrap: wrap; }
-    .chain-logo {
-      width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .chain-logo svg { width: 22px; height: 22px; }
-
-    .dark-visual { position: relative; display: flex; align-items: center; justify-content: center; min-height: 200px; }
-    .coin {
-      width: 72px; height: 72px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; font-weight: 800; box-shadow: 0 12px 40px rgba(0,0,0,0.5);
-      position: absolute;
-    }
-    .coin-usdt { background: #26A17B; color: #fff; top: 20px; right: 30px; animation: float1 3s ease-in-out infinite; }
-    .coin-usdc { background: #2775CA; color: #fff; bottom: 0px; right: 120px; width: 60px; height: 60px; animation: float2 3.5s ease-in-out infinite; }
-    .coin-card {
-      width: 180px; height: 110px; background: linear-gradient(135deg, #FF8A4A, #FF4500);
-      border-radius: 14px; position: relative; transform: rotate(-8deg); left: -20px;
-      padding: 14px; display: flex; flex-direction: column; justify-content: space-between;
-      box-shadow: 0 20px 60px rgba(255,69,0,0.3);
-      animation: float3 4s ease-in-out infinite;
-    }
-    .coin-card-logo { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.9); }
-    .coin-card-num { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 2px; }
-    @keyframes float1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-    @keyframes float2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-    @keyframes float3 { 0%,100% { transform: rotate(-8deg) translateY(0); } 50% { transform: rotate(-8deg) translateY(-10px); } }
-
-    /* ─── FAQ ──────────────────────────────────────────── */
-    .faq-section {
-      padding: 64px 48px; max-width: 1240px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start;
-    }
-    .faq-sub { font-size: 15px; color: #666; margin-bottom: 24px; line-height: 1.6; }
-    .faq-list { display: flex; flex-direction: column; }
-    .faq-item { border-bottom: 1px solid #e0e0e0; }
-    .faq-item:first-child { border-top: 1px solid #e0e0e0; }
-    .faq-q {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 0; cursor: pointer; user-select: none;
-      font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 600; color: #1a1a1a;
-      gap: 16px;
-    }
-    .faq-q:hover { color: #FF4500; }
-    .faq-expand {
-      width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid #ccc;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; transition: transform 0.3s, border-color 0.2s;
-      font-size: 18px; color: #888; line-height: 1;
-    }
-    .faq-item.open .faq-expand { transform: rotate(45deg); border-color: #FF4500; color: #FF4500; }
-    .faq-a {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.3s;
-      font-size: 14px; color: #666; line-height: 1.75;
-    }
-    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 18px; }
-
-    /* ─── CTA ──────────────────────────────────────────── */
-    .cta-wrap { padding: 0 48px 40px; max-width: 1240px; margin: 0 auto; }
-    .cta-card {
-      background: #fff; border-radius: 24px; padding: 40px 48px;
-      display: flex; align-items: center; justify-content: space-between; gap: 24px;
-    }
-    .cta-title { font-family: 'DM Sans', sans-serif; font-size: 28px; font-weight: 700; margin-bottom: 6px; }
-    .cta-sub { font-size: 14px; color: #888; }
-
-    /* ─── FOOTER ───────────────────────────────────────── */
-    footer { padding: 0 48px 48px; max-width: 1240px; margin: 0 auto; }
-    .footer-wordmark {
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(80px, 14vw, 200px);
-      font-weight: 900; color: #FF4500; line-height: 0.95;
-      letter-spacing: -6px; margin-bottom: 32px; user-select: none;
-    }
-    .footer-bottom { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-    .footer-copy { font-size: 12px; color: #888; max-width: 520px; line-height: 1.7; }
-    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
-    .footer-links a { font-size: 13px; color: #888; text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: #1a1a1a; }
-
-    /* ─── RESPONSIVE ───────────────────────────────────── */
-    @media (max-width: 900px) {
-      .nav { padding: 14px 20px; }
-      .hero-wrap { padding: 16px 16px 32px; }
-      .hero-card { grid-template-columns: 1fr; }
-      .hero-right { min-height: 260px; }
-      .hero-left { padding: 36px 28px; }
-      .hero-title { font-size: 38px; }
-      .beyond-section { padding: 40px 20px; }
-      .three-grid { grid-template-columns: 1fr; gap: 12px; }
-      .img-card { aspect-ratio: 4/3; }
-      .stable-section { padding: 32px 20px 48px; }
-      .features-row { grid-template-columns: 1fr; gap: 28px; }
-      .split-section { padding: 0 20px 40px; grid-template-columns: 1fr; }
-      .split-img { min-height: 280px; }
-      .dark-wrap { padding: 0 20px 40px; }
-      .dark-card { grid-template-columns: 1fr; padding: 36px 28px; gap: 32px; }
-      .dark-visual { min-height: 160px; }
-      .faq-section { padding: 40px 20px; grid-template-columns: 1fr; }
-      .cta-wrap { padding: 0 20px 32px; }
-      .cta-card { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
-      footer { padding: 0 20px 36px; }
-      .footer-wordmark { letter-spacing: -3px; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cashi — Spend, Save & Earn. All in one card.</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- ─── NAV ──────────────────────────────────────────────── -->
-<nav class="nav">
-  <a href="/" class="nav-logo">cashi</a>
-  <a href="#waitlist" class="btn-dark">Join Waitlist</a>
-</nav>
-
-<!-- ─── HERO ─────────────────────────────────────────────── -->
-<div class="hero-wrap">
-  <div class="hero-card">
-    <div class="hero-left">
-      <div>
-        <h1 class="hero-title">Money that moves with you.</h1>
-        <p class="hero-sub">Pay, send and move crypto stablecoins all around the world, whenever you need it.</p>
-        <p class="hero-tagline">Just cashi.</p>
-      </div>
-      <form class="hero-form" id="hero-form" onsubmit="handleForm(event,'hero-form')">
-        <input type="email" placeholder="Enter your email" required>
-        <button type="submit" class="btn-dark">Join Waitlist</button>
-      </form>
-    </div>
-    <div class="hero-right">
-      <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?w=700&q=80&fit=crop" alt="Person using Cashi crypto card app">
-    </div>
-  </div>
-</div>
-
-<!-- ─── BEYOND BORDERS ────────────────────────────────────── -->
-<section class="beyond-section">
-  <h2 class="section-heading">Cashi Beyond Borders</h2>
-  <div class="three-grid">
-
-    <!-- Card 1 -->
-    <div class="img-card">
-      <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&h=600&q=80&fit=crop" alt="Use cashi crypto card anywhere">
-      <div class="img-card-overlay">
-        <p class="img-card-text">Use your cashi crypto card anywhere in the world.</p>
-      </div>
-      <div class="notif-overlay">
-        <div class="notif-icon">
-          <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
-        </div>
-        <div class="notif-details">
-          <div class="notif-label">Payment</div>
-          <div class="notif-sub">Coffee and Go</div>
-        </div>
-        <div class="notif-right">
-          <div class="notif-amount">-102.24 MXN</div>
-          <div class="notif-status">Successful</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="img-card">
-      <img src="https://images.unsplash.com/photo-1556742111-a301076d9d18?w=600&h=600&q=80&fit=crop" alt="Tap to pay with crypto">
-      <div class="img-card-overlay">
-        <p class="img-card-text">Tap to pay with crypto, online or in-store. Ka-ching!</p>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="img-card">
-      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=600&q=80&fit=crop" alt="Send and receive crypto">
-      <div class="img-card-overlay">
-        <p class="img-card-text">Send and receive crypto to anyone, anywhere. Easy.</p>
-      </div>
-      <div class="notif-overlay notif-received">
-        <div style="flex:1">
-          <div class="notif-sub" style="font-size:12px;color:#888;">You received</div>
-          <div class="notif-label" style="font-size:16px;">12,500 USDT</div>
-        </div>
-        <div class="notif-badge" style="background:#26A17B;color:#fff;font-size:10px;font-weight:700;border-radius:6px;padding:3px 8px;">USDT<br><span style="font-weight:400;font-size:9px;">Instantly</span></div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ─── MARQUEE ────────────────────────────────────────────── -->
-<div class="marquee-section" aria-hidden="true">
-  <div class="marquee-inner" id="marquee">
-    <!-- flags duplicated for seamless loop -->
-    <div class="flag-circle">🇦🇷</div>
-    <div class="flag-circle">🇧🇷</div>
-    <div class="flag-circle">🇪🇬</div>
-    <div class="flag-circle">🇭🇰</div>
-    <div class="flag-circle">🇮🇳</div>
-    <div class="flag-circle">🇲🇽</div>
-    <div class="flag-circle">🇳🇬</div>
-    <div class="flag-circle">🇵🇪</div>
-    <div class="flag-circle">🇸🇦</div>
-    <div class="flag-circle">🇿🇦</div>
-    <div class="flag-circle">🇹🇼</div>
-    <div class="flag-circle">🇦🇪</div>
-    <!-- duplicate -->
-    <div class="flag-circle">🇦🇷</div>
-    <div class="flag-circle">🇧🇷</div>
-    <div class="flag-circle">🇪🇬</div>
-    <div class="flag-circle">🇭🇰</div>
-    <div class="flag-circle">🇮🇳</div>
-    <div class="flag-circle">🇲🇽</div>
-    <div class="flag-circle">🇳🇬</div>
-    <div class="flag-circle">🇵🇪</div>
-    <div class="flag-circle">🇸🇦</div>
-    <div class="flag-circle">🇿🇦</div>
-    <div class="flag-circle">🇹🇼</div>
-    <div class="flag-circle">🇦🇪</div>
-  </div>
-</div>
-
-<!-- ─── PAY WITH STABLECOINS ──────────────────────────────── -->
-<section class="stable-section">
-  <!-- Cashi virtual card visual -->
-  <div class="crypto-card-visual">
-    <div class="crypto-card-visual-logo">cashi</div>
-    <div class="crypto-card-visual-num">•••• •••• •••• 1234</div>
-  </div>
-
-  <h2 class="stable-title">Pay with Stablecoins &amp; Crypto*</h2>
-  <p class="stable-sub">*More coming soon</p>
-
-  <div class="features-row">
-    <!-- Tap to Pay -->
-    <div class="feat-item">
-      <div class="feat-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 17.03l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z"/>
+  <!-- ═══════════════════════ NAVBAR ═══ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <!-- Cashi official wordmark SVG -->
+        <svg class="cashi-wordmark" viewBox="0 0 1152 359" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M348.035 342.257C329.746 331.134 315.609 315.673 305.648 295.898C295.663 276.124 290.694 253.271 290.694 227.34C290.694 201.409 295.593 179.559 305.415 159.784C315.212 140.009 329.279 124.548 347.569 113.425C365.858 102.302 386.97 96.7285 410.905 96.7285C425.206 96.7285 438.176 98.5707 449.817 102.209C461.458 105.87 471.256 110.673 479.234 116.666C487.212 122.66 493.698 128.792 498.69 135.112V103.211H557.034V351.491H498.69V317.096C495.027 322.086 489.545 327.822 482.243 334.305C474.918 340.788 465.19 346.524 453.06 351.515C440.929 356.505 426.885 359 410.905 359C387.297 359 366.348 353.427 348.059 342.304L348.035 342.257ZM464.747 301.378C476.038 294.569 484.856 284.752 491.178 271.973C497.5 259.17 500.649 244.293 500.649 227.34C500.649 210.387 497.477 195.602 491.178 182.963C484.856 170.324 476.038 160.623 464.747 153.791C453.433 146.982 440.462 143.577 425.835 143.577C411.209 143.577 397.818 146.912 386.69 153.558C375.539 160.204 366.908 169.834 360.749 182.473C354.591 195.112 351.511 210.06 351.511 227.34C351.511 244.619 354.591 259.077 360.749 271.716C366.908 284.355 375.539 294.149 386.69 301.122C397.818 308.094 410.882 311.592 425.835 311.592C440.789 311.592 453.433 308.188 464.747 301.378Z" fill="currentColor"/>
+          <path d="M627.579 346.991C610.456 339.015 597.649 328.475 589.18 315.323C580.712 302.194 576.117 287.48 575.463 271.203H630.332C630.985 278.852 633.481 286.081 637.82 292.89C642.136 299.699 648.784 305.342 657.766 309.843C666.747 314.344 678.038 316.582 691.685 316.582C707.315 316.582 719.609 313.667 728.591 307.861C737.572 302.054 742.051 294.476 742.051 285.171C742.051 275.867 738.715 269.221 732.067 264.231C725.418 259.24 713.124 254.926 695.161 251.265L669.733 247.277C639.476 241.961 618.038 233.076 605.394 220.6C592.75 208.148 586.451 191.614 586.451 171C586.451 156.705 590.604 143.926 598.908 132.617C607.213 121.33 618.924 112.352 634.064 105.706C649.181 99.0602 666.397 95.7256 685.69 95.7256C720.612 95.7256 747.207 103.048 765.496 117.669C783.785 132.29 794.097 150.246 796.429 171.513H740.581C738.249 160.88 732.51 152.578 723.365 146.585C714.22 140.592 701.343 137.607 684.71 137.607C671.063 137.607 660.519 140.265 653.03 145.582C645.542 150.899 641.809 157.708 641.809 166.033C641.809 174.358 645.215 180.235 652.027 184.735C658.839 189.213 670.55 193.13 687.183 196.441L715.107 201.432C744.034 207.098 765.799 216.309 780.449 229.112C795.076 241.914 802.401 259.1 802.401 280.717C802.401 296.015 798.249 309.563 789.944 321.339C781.639 333.139 769.159 342.373 752.549 349.019C735.916 355.665 715.807 359 692.198 359C666.257 359 644.725 355.012 627.602 347.037L627.579 346.991Z" fill="currentColor"/>
+          <path d="M820.854 0H881.205V133.106C887.527 123.802 897.068 115.407 909.875 107.922C922.682 100.436 938.709 96.705 958.002 96.705C976.291 96.705 992.411 100.273 1006.38 107.432C1020.36 114.591 1031.32 125.388 1039.3 139.846C1047.28 154.304 1051.27 171.84 1051.27 192.43V351.468H990.918V202.411C990.918 188.443 988.912 177.156 984.922 168.505C980.933 159.877 975.101 153.557 967.473 149.57C959.821 145.582 950.513 143.577 939.549 143.577C919.603 143.577 904.883 150.479 895.412 164.261C885.94 178.066 881.205 196.581 881.205 219.854V351.468H820.854V0Z" fill="currentColor"/>
+          <path d="M1088.92 60.3269C1082.44 53.3545 1079.19 44.8663 1079.19 34.9089C1079.19 24.9516 1082.44 16.6266 1088.92 9.98064C1095.41 3.33465 1104.13 0 1115.09 0C1126.06 0 1135.37 3.40461 1142.02 10.2138C1148.66 17.0231 1152 25.2548 1152 34.8856C1152 44.5165 1148.66 53.3311 1142.02 60.3036C1135.37 67.2761 1126.39 70.7739 1115.09 70.7739C1103.8 70.7739 1095.38 67.2761 1088.92 60.3036V60.3269Z" fill="currentColor"/>
+          <path d="M1146.03 103.211H1085.68V351.491H1146.03V103.211Z" fill="currentColor"/>
+          <path d="M197.171 190.612H274.528C262.421 135.112 224.675 96.7051 181.658 96.7051H138.85C167.638 115.5 188.913 149.5 197.171 190.612Z" fill="currentColor"/>
+          <path d="M138.85 358.953H181.658C224.675 358.953 262.421 320.57 274.528 265.047H197.171C188.936 306.159 167.638 340.135 138.85 358.953Z" fill="currentColor"/>
+          <path d="M77.6367 227.829C77.6367 182.24 94.1998 140.265 122.171 114.358C111.486 108.201 100.172 105.077 88.4844 105.077C39.6815 105.1 0 160.157 0 227.829C0 295.502 39.6815 350.582 88.4611 350.582C100.149 350.582 111.463 347.457 122.147 341.301C94.1765 315.416 77.6134 273.418 77.6134 227.853L77.6367 227.829Z" fill="currentColor"/>
         </svg>
+      </a>
+      <div class="nav-actions">
+        <a href="#waitlist" class="nav-cta">Join the waitlist</a>
       </div>
-      <div class="feat-title">Tap to Pay</div>
-      <p class="feat-desc">Add your cashi card to Apple Wallet or Google Wallet. Tap and pay, done.</p>
     </div>
-    <!-- Set Spending Limit -->
-    <div class="feat-item">
-      <div class="feat-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="2" y="5" width="20" height="14" rx="3"/>
-          <path d="M2 10h20"/>
-        </svg>
-      </div>
-      <div class="feat-title">Set Spending Limit</div>
-      <p class="feat-desc">Easily manage expenses with spending limits for bills, online purchases, flights, travel, and more.</p>
-    </div>
-    <!-- Works Worldwide -->
-    <div class="feat-item">
-      <div class="feat-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="12" cy="12" r="9.75"/>
-          <path d="M12 2.25c0 0-4.5 5.25-4.5 9.75s4.5 9.75 4.5 9.75M12 2.25c0 0 4.5 5.25 4.5 9.75s-4.5 9.75-4.5 9.75M2.25 12h19.5"/>
-        </svg>
-      </div>
-      <div class="feat-title">Works Worldwide</div>
-      <p class="feat-desc">Pay with your cashi card at stores, online, and in apps worldwide. Literally everywhere.</p>
-    </div>
-  </div>
-</section>
+  </nav>
 
-<!-- ─── SPLIT: GROCERIES + PHONE ──────────────────────────── -->
-<div class="split-section">
-  <!-- Left: photo with payment notification -->
-  <div class="split-img">
-    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=700&q=80&fit=crop" alt="Shopping with cashi crypto card">
-    <div class="notif-overlay" style="bottom:18px;left:18px;right:18px;">
-      <div class="notif-icon">
-        <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+  <!-- ═══════════════════════ HERO ═══ -->
+  <section class="hero so">
+    <div class="hero-content">
+      <h1 class="hero-headline so">The <em>one</em> app for<br>your money</h1>
+      <div class="hero-form-wrap so">
+        <form class="hero-form" id="hero-form">
+          <input type="email" placeholder="Enter your email" class="hero-input" />
+          <button type="submit" class="hero-btn">Join the waitlist</button>
+        </form>
+        <p class="hero-note">Secure early access and unlock unique rewards.</p>
       </div>
-      <div class="notif-details">
-        <div class="notif-label">Payment</div>
-        <div class="notif-sub">Local Groceries Store</div>
-      </div>
-      <div class="notif-right">
-        <div class="notif-amount">-31.25 USD</div>
-        <div class="notif-status">Successful</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Right: phone mockup -->
-  <div class="split-phone">
-    <div class="phone">
-      <div class="phone-notch">
-        <div class="phone-notch-pill"></div>
-      </div>
-      <div class="phone-screen">
-        <div class="phone-card-inner">
-          <div class="phone-card-brand">cashi</div>
-          <div class="phone-card-label">Virtual Card</div>
-          <div class="phone-card-num">•••• 1234</div>
-          <div class="phone-card-expiry">Expiry &nbsp; CVV</div>
+      <div class="hero-stats so">
+        <div class="hero-stat">
+          <span class="stat-bold">4%</span>&nbsp;back on purchases
         </div>
-        <div class="phone-apple-add">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-          <div>
-            <div style="font-size:10px;font-weight:600;">Add card to Apple Wallet</div>
-            <div style="font-size:9px;color:#888;">Pay with your phone.</div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          Works in&nbsp;<span class="stat-bold">150+ countries</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="stat-bold">10%+</span>&nbsp;interest on your balance
+        </div>
+      </div>
+    </div>
+    <div class="hero-landscape" id="hero-landscape">
+      <img src="assets/images/hero-bg.avif" alt="" class="land-bg" id="land-bg" />
+      <img src="assets/images/hero-midground.avif" alt="" class="land-mid" id="land-mid" />
+      <img src="assets/images/hero-foreground.avif" alt="" class="land-fg" id="land-fg" />
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FASTER / CHEAPER / BETTER ═══ -->
+  <section class="fcb-section">
+    <div class="fcb-content">
+      <h2 class="fcb-line fcb-1 so">Faster.</h2>
+      <h2 class="fcb-line fcb-2 so">Cheaper.</h2>
+      <h2 class="fcb-line fcb-3 so">Better.</h2>
+    </div>
+    <div class="fcb-landscape">
+      <img src="assets/images/hero-bg.avif" alt="" class="land-bg" />
+      <img src="assets/images/hero-midground.avif" alt="" class="land-mid" />
+      <img src="assets/images/hero-foreground.avif" alt="" class="land-fg" />
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FEATURES ═══ -->
+  <section class="features-section">
+    <div class="features-grid">
+      <div class="feature-item so">
+        <img src="assets/images/feature-icon-1.svg" alt="" class="feat-icon" />
+        <h3>Your money earns as you spend</h3>
+        <p>Your balance earns interest automatically. Spend any time — no top-ups or transfers needed.</p>
+      </div>
+      <div class="feature-item so">
+        <img src="assets/images/feature-icon-2.svg" alt="" class="feat-icon" />
+        <h3>Up to 4% back on purchases</h3>
+        <p>Get money back on everything you buy. Extra rewards at partner merchants.</p>
+      </div>
+      <div class="feature-item so">
+        <img src="assets/images/feature-icon-3.svg" alt="" class="feat-icon" />
+        <h3>Works in 150+ countries</h3>
+        <p>Use your Cashi card anywhere Visa is accepted — online, in-store, wherever you are.</p>
+      </div>
+      <div class="feature-item so">
+        <img src="assets/images/feature-icon-4.svg" alt="" class="feat-icon" />
+        <h3>Free instant transfers</h3>
+        <p>Send money to anyone, anywhere, instantly. No fees, no delays, ever.</p>
+      </div>
+      <div class="feature-item so">
+        <img src="assets/images/feature-icon-5.svg" alt="" class="feat-icon" />
+        <h3>Set up in minutes</h3>
+        <p>Verify your identity, get your virtual card, and start spending — in under 5 minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ ONE APP ONE CARD ═══ -->
+  <section class="card-section">
+    <div class="card-section-inner">
+      <div class="card-section-left">
+        <h2 class="card-heading so">One app. One card.<br><em>No borders.</em></h2>
+        <div class="card-carousel" id="cardCarousel">
+          <div class="carousel-items" id="carouselItems">
+            <div class="carousel-item active" data-index="0">
+              <img src="assets/images/card-screen-1.avif" alt="Earning balance" />
+              <p>Your balance keeps growing until the moment you spend it.</p>
+            </div>
+            <div class="carousel-item" data-index="1">
+              <img src="assets/images/card-screen-2.avif" alt="Spend directly" />
+              <p>Pay directly from your balance. No top-ups or manual transfers.</p>
+            </div>
+            <div class="carousel-item" data-index="2">
+              <img src="assets/images/card-screen-3.avif" alt="Virtual card" />
+              <p>Get a virtual card instantly. Your premium physical card delivered to your door.</p>
+            </div>
           </div>
-          <span class="phone-close-btn">×</span>
+          <div class="carousel-nav">
+            <button class="carousel-arrow carousel-prev" id="carouselPrev" aria-label="Previous">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="carousel-arrow carousel-next" id="carouselNext" aria-label="Next">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
         </div>
-        <div class="phone-menu-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.25 12l8.954-8.955a1.5 1.5 0 012.091 0l8.955 8.955M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
-          Billing Address
-          <span class="phone-menu-arrow">›</span>
+      </div>
+      <div class="card-section-right">
+        <img src="assets/images/phone-rock.avif" alt="Cashi app" class="phone-rock-img" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ REWARDS / 4% ═══ -->
+  <section class="rewards-section">
+    <div class="rewards-inner">
+      <div class="rewards-label-row so">
+        <span class="section-label">Rewards</span>
+        <span class="rewards-sub">Money back on everything you buy</span>
+      </div>
+      <div class="big-stat so">
+        <div class="big-stat-number cashback-shine">4%</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ EARN / 10%+ ═══ -->
+  <section class="earn-section">
+    <div class="earn-bg-wrap">
+      <img src="assets/images/section-off.avif" alt="" class="earn-bg-img earn-off" id="earnOff" />
+      <img src="assets/images/section-on.avif" alt="" class="earn-bg-img earn-on" id="earnOn" />
+    </div>
+    <div class="earn-content">
+      <div class="earn-top so">
+        <span class="section-label light">Interest</span>
+        <h2 class="earn-heading so">Your balance grows<br><em>while you sleep</em></h2>
+        <p class="earn-sub so">Every pound in your account earns 10%+ interest automatically — no action needed. Withdraw or spend it any time, no lock-up.</p>
+      </div>
+      <div class="earn-big so">
+        <div class="big-stat-number earn-number">10%+</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ GET STARTED ═══ -->
+  <section class="onboard-section">
+    <div class="onboard-top so">
+      <span class="section-label light">Up and running in minutes</span>
+      <p class="onboard-desc so">Download the app, verify your identity quickly, add money, and start spending right away. No paperwork.</p>
+    </div>
+    <div class="onboard-phone-wrap">
+      <img src="assets/images/iphone-2.avif" alt="Cashi app" class="onboard-phone so" />
+    </div>
+    <div class="onboard-steps">
+      <div class="onboard-step so">
+        <div class="step-line"></div>
+        <div class="step-info">
+          <span class="step-num">Step 1</span>
+          <div class="step-mockup">
+            <div class="step-mock-logo">
+              <svg viewBox="0 0 80 24" fill="none" width="64"><text x="0" y="18" font-family="DM Sans, sans-serif" font-size="16" font-weight="600" fill="rgba(255,255,255,0.9)">cashi</text></svg>
+            </div>
+            <p class="step-mock-sub">Create your free account</p>
+            <div class="step-mock-field">Email address</div>
+            <div class="step-mock-btn">Continue</div>
+            <p class="step-mock-or">or</p>
+            <div class="step-mock-apple">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="white"><path d="M7.045 3.09C7.69 3.09 8.5 2.62 9 1.93 9.45 1.3 9.76.44 9.76 0c-.04.01-1.06.04-1.65.73C7.67.99 7.22 1.8 7.22 2.67c0 .09.01.19.02.28-.06.01-.12.01-.2.01zm-2.7 7.87c.63 0 .9-.41 1.69-.41.79 0 .96.4 1.66.4.69 0 1.15-.64 1.58-1.26.47-.71.67-1.4.68-1.43-.05-.01-1.31-.52-1.31-1.95 0-1.24.99-1.82 1.04-1.85-.59-.85-1.5-.88-1.75-.88-.78 0-1.4.47-1.8.47-.43 0-1-.44-1.67-.44C3.33 5.52 2 6.66 2 8.77c0 1.23.48 2.53.9 3.37.36.71.9 1.49 1.45 1.49z"/></svg>
+              Continue with Apple
+            </div>
+          </div>
+          <p class="step-label">Quick identity check</p>
         </div>
-        <div class="phone-menu-row">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20"/></svg>
-          Card Limit
-          <span class="phone-menu-arrow">›</span>
+      </div>
+      <div class="onboard-step so">
+        <div class="step-line"></div>
+        <div class="step-info">
+          <span class="step-num">Step 2</span>
+          <img src="assets/images/step-2.avif" alt="Step 2" class="step-img" />
+          <p class="step-label active-step">Virtual card issued instantly</p>
         </div>
-        <div class="phone-menu-row" style="border-bottom:none;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/></svg>
-          Freeze Card
-          <span class="phone-menu-arrow">›</span>
+      </div>
+      <div class="onboard-step so">
+        <div class="step-line"></div>
+        <div class="step-info">
+          <span class="step-num">Step 3</span>
+          <img src="assets/images/step-3.avif" alt="Step 3" class="step-img" />
+          <p class="step-label">Add to Apple Pay or Google Pay</p>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- ─── DARK SECTION: CASH IN CASH OUT ───────────────────── -->
-<div class="dark-wrap">
-  <div class="dark-card">
-    <div>
-      <p class="dark-label">Fast, Frictionless Transfers</p>
-      <h2 class="dark-title">Cash In, Cash Out.<br>Move It Freely.</h2>
-      <p class="dark-desc">Transfer to friends on cashi or between crypto wallets anywhere across the globe.</p>
-      <div class="chain-row">
-        <!-- Ethereum -->
-        <div class="chain-logo" title="Ethereum">
-          <svg viewBox="0 0 24 24" fill="white"><path d="M11.944 17.97L4.58 13.62 11.943 24l7.37-10.38-7.372 4.35zM12.056 0L4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z"/></svg>
+  <!-- ═══════════════════════ SECURITY ═══ -->
+  <section class="security-section">
+    <div class="security-card so">
+      <h2 class="security-heading">Security that protects<br>every payment</h2>
+      <div class="security-cols">
+        <div class="security-col">
+          <img src="assets/images/security-icon-1.svg" alt="" class="sec-icon" />
+          <h3>Your money is our priority</h3>
+          <p>Cashi is independently audited, continuously monitored, and protected by bank-grade security controls.</p>
         </div>
-        <!-- Solana -->
-        <div class="chain-logo" title="Solana">
-          <svg viewBox="0 0 24 24" fill="white"><path d="M4 6.5h12.5l3.5-2.5H4v2.5zM4 13.25h12.5l3.5-2.5H4v2.5zM7.5 20h12.5l-3.5-2.5H4l3.5 2.5z"/></svg>
-        </div>
-        <!-- Arbitrum -->
-        <div class="chain-logo" title="Arbitrum">
-          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2L3 7v10l9 5 9-5V7L12 2zm0 2.3l6.7 3.9v7.7L12 19.7l-6.7-3.8V8.2L12 4.3z"/></svg>
-        </div>
-        <!-- BNB Chain -->
-        <div class="chain-logo" title="BNB Chain">
-          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2l2.5 2.5L12 7 9.5 4.5 12 2zm4.5 4.5L19 9l-2.5 2.5L14 9l2.5-2.5zM7.5 6.5L10 9l-2.5 2.5L5 9l2.5-2.5zm4.5 4.5l2.5 2.5L12 16l-2.5-2.5L12 11zm0 5l2.5 2.5L12 21l-2.5-2.5L12 16z"/></svg>
-        </div>
-        <!-- Tron -->
-        <div class="chain-logo" title="Tron">
-          <svg viewBox="0 0 24 24" fill="white"><path d="M12 2L22 9l-3.5 11.5H5.5L2 9 12 2zm0 3L5 9.5l2.5 8.5h9L19 9.5 12 5z"/></svg>
-        </div>
-        <!-- Polygon -->
-        <div class="chain-logo" title="Polygon">
-          <svg viewBox="0 0 24 24" fill="white"><path d="M15.5 8l-3.5-2-3.5 2v4l3.5 2 3.5-2V8zm-3.5 4.3L9.5 11V9l2.5-1.4L14.5 9v2l-2.5 1.3zM4.5 6.5L8 4.5 12 2l4 2.5 3.5 2v7l-3.5 2L12 18l-4-2.5-3.5-2V6.5z"/></svg>
-        </div>
-        <!-- Base -->
-        <div class="chain-logo" title="Base">
-          <svg viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="8" fill="none" stroke="white" stroke-width="2"/><path d="M9 12a3 3 0 1 1 6 0" stroke="white" stroke-width="2" fill="none"/></svg>
+        <div class="security-col">
+          <img src="assets/images/security-icon-2.svg" alt="" class="sec-icon" />
+          <h3>You're always in control</h3>
+          <p>Manage how your card is used, get real-time alerts, and freeze or unfreeze it with a tap.</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="dark-visual">
-      <div class="coin-card">
-        <div class="coin-card-logo">cashi</div>
-        <div class="coin-card-num">•••• 1234</div>
-      </div>
-      <div class="coin coin-usdt">T</div>
-      <div class="coin coin-usdc" style="font-size:15px;">$</div>
+  <!-- ═══════════════════════ CTA ═══ -->
+  <section class="cta-section" id="waitlist">
+    <div class="cta-video-wrap">
+      <video class="cta-video" autoplay muted loop playsinline>
+        <source src="assets/videos/video-cta.mp4" type="video/mp4" />
+      </video>
     </div>
-  </div>
-</div>
-
-<!-- ─── FAQ ───────────────────────────────────────────────── -->
-<section class="faq-section" id="faq-section">
-  <div>
-    <h2 class="section-heading">FAQs</h2>
-    <p class="faq-sub">Got questions? We're here to help.</p>
-    <a href="mailto:support@justcashi.com" class="btn-outline">Contact Us</a>
-  </div>
-  <div class="faq-list">
-
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span>What is cashi?</span>
-        <span class="faq-expand">+</span>
+    <div class="cta-content">
+      <div class="cta-logo">
+        <svg class="cta-wordmark" viewBox="0 0 1152 359" fill="none">
+          <path d="M348.035 342.257C329.746 331.134 315.609 315.673 305.648 295.898C295.663 276.124 290.694 253.271 290.694 227.34C290.694 201.409 295.593 179.559 305.415 159.784C315.212 140.009 329.279 124.548 347.569 113.425C365.858 102.302 386.97 96.7285 410.905 96.7285C425.206 96.7285 438.176 98.5707 449.817 102.209C461.458 105.87 471.256 110.673 479.234 116.666C487.212 122.66 493.698 128.792 498.69 135.112V103.211H557.034V351.491H498.69V317.096C495.027 322.086 489.545 327.822 482.243 334.305C474.918 340.788 465.19 346.524 453.06 351.515C440.929 356.505 426.885 359 410.905 359C387.297 359 366.348 353.427 348.059 342.304L348.035 342.257ZM464.747 301.378C476.038 294.569 484.856 284.752 491.178 271.973C497.5 259.17 500.649 244.293 500.649 227.34C500.649 210.387 497.477 195.602 491.178 182.963C484.856 170.324 476.038 160.623 464.747 153.791C453.433 146.982 440.462 143.577 425.835 143.577C411.209 143.577 397.818 146.912 386.69 153.558C375.539 160.204 366.908 169.834 360.749 182.473C354.591 195.112 351.511 210.06 351.511 227.34C351.511 244.619 354.591 259.077 360.749 271.716C366.908 284.355 375.539 294.149 386.69 301.122C397.818 308.094 410.882 311.592 425.835 311.592C440.789 311.592 453.433 308.188 464.747 301.378Z" fill="currentColor"/>
+          <path d="M627.579 346.991C610.456 339.015 597.649 328.475 589.18 315.323C580.712 302.194 576.117 287.48 575.463 271.203H630.332C630.985 278.852 633.481 286.081 637.82 292.89C642.136 299.699 648.784 305.342 657.766 309.843C666.747 314.344 678.038 316.582 691.685 316.582C707.315 316.582 719.609 313.667 728.591 307.861C737.572 302.054 742.051 294.476 742.051 285.171C742.051 275.867 738.715 269.221 732.067 264.231C725.418 259.24 713.124 254.926 695.161 251.265L669.733 247.277C639.476 241.961 618.038 233.076 605.394 220.6C592.75 208.148 586.451 191.614 586.451 171C586.451 156.705 590.604 143.926 598.908 132.617C607.213 121.33 618.924 112.352 634.064 105.706C649.181 99.0602 666.397 95.7256 685.69 95.7256C720.612 95.7256 747.207 103.048 765.496 117.669C783.785 132.29 794.097 150.246 796.429 171.513H740.581C738.249 160.88 732.51 152.578 723.365 146.585C714.22 140.592 701.343 137.607 684.71 137.607C671.063 137.607 660.519 140.265 653.03 145.582C645.542 150.899 641.809 157.708 641.809 166.033C641.809 174.358 645.215 180.235 652.027 184.735C658.839 189.213 670.55 193.13 687.183 196.441L715.107 201.432C744.034 207.098 765.799 216.309 780.449 229.112C795.076 241.914 802.401 259.1 802.401 280.717C802.401 296.015 798.249 309.563 789.944 321.339C781.639 333.139 769.159 342.373 752.549 349.019C735.916 355.665 715.807 359 692.198 359C666.257 359 644.725 355.012 627.602 347.037L627.579 346.991Z" fill="currentColor"/>
+          <path d="M820.854 0H881.205V133.106C887.527 123.802 897.068 115.407 909.875 107.922C922.682 100.436 938.709 96.705 958.002 96.705C976.291 96.705 992.411 100.273 1006.38 107.432C1020.36 114.591 1031.32 125.388 1039.3 139.846C1047.28 154.304 1051.27 171.84 1051.27 192.43V351.468H990.918V202.411C990.918 188.443 988.912 177.156 984.922 168.505C980.933 159.877 975.101 153.557 967.473 149.57C959.821 145.582 950.513 143.577 939.549 143.577C919.603 143.577 904.883 150.479 895.412 164.261C885.94 178.066 881.205 196.581 881.205 219.854V351.468H820.854V0Z" fill="currentColor"/>
+          <path d="M1088.92 60.3269C1082.44 53.3545 1079.19 44.8663 1079.19 34.9089C1079.19 24.9516 1082.44 16.6266 1088.92 9.98064C1095.41 3.33465 1104.13 0 1115.09 0C1126.06 0 1135.37 3.40461 1142.02 10.2138C1148.66 17.0231 1152 25.2548 1152 34.8856C1152 44.5165 1148.66 53.3311 1142.02 60.3036C1135.37 67.2761 1126.39 70.7739 1115.09 70.7739C1103.8 70.7739 1095.38 67.2761 1088.92 60.3036V60.3269Z" fill="currentColor"/>
+          <path d="M1146.03 103.211H1085.68V351.491H1146.03V103.211Z" fill="currentColor"/>
+          <path d="M197.171 190.612H274.528C262.421 135.112 224.675 96.7051 181.658 96.7051H138.85C167.638 115.5 188.913 149.5 197.171 190.612Z" fill="currentColor"/>
+          <path d="M138.85 358.953H181.658C224.675 358.953 262.421 320.57 274.528 265.047H197.171C188.936 306.159 167.638 340.135 138.85 358.953Z" fill="currentColor"/>
+          <path d="M77.6367 227.829C77.6367 182.24 94.1998 140.265 122.171 114.358C111.486 108.201 100.172 105.077 88.4844 105.077C39.6815 105.1 0 160.157 0 227.829C0 295.502 39.6815 350.582 88.4611 350.582C100.149 350.582 111.463 347.457 122.147 341.301C94.1765 315.416 77.6134 273.418 77.6134 227.853L77.6367 227.829Z" fill="currentColor"/>
+        </svg>
       </div>
-      <div class="faq-a">
-        Cashi is a fintech platform that lets you spend, send, and manage crypto stablecoins using a virtual card — anywhere in the world. Add it to Apple Wallet or Google Wallet and pay with crypto just like a regular debit card.
+      <h2 class="cta-heading so">The smarter way to<br>spend, save &amp; earn</h2>
+      <p class="cta-sub so">Be among the first to get early access to Cashi.</p>
+      <form class="cta-form so" id="cta-form">
+        <input type="email" placeholder="Enter your email" class="cta-input" />
+        <button type="submit" class="cta-btn">Join the waitlist</button>
+      </form>
+      <p class="cta-note">No spam. Early access perks included.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FAQ ═══ -->
+  <section class="faq-section">
+    <div class="faq-inner">
+      <h2 class="faq-heading so">Frequently asked questions</h2>
+      <div class="faq-list">
+        <div class="faq-item so">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            <span>Is Cashi a bank?</span>
+            <svg class="faq-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            <p>No. Cashi is a financial technology company, not a bank. Your money is held securely and protected — the Cashi Card is issued by Signify Holdings, Inc. under a Visa licence.</p>
+          </div>
+        </div>
+        <div class="faq-item so">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            <span>Where can I use my Cashi card?</span>
+            <svg class="faq-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            <p>Anywhere Visa is accepted — that's 150+ countries and tens of millions of merchants worldwide, online and in-store.</p>
+          </div>
+        </div>
+        <div class="faq-item so">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            <span>How does the cash back work?</span>
+            <svg class="faq-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            <p>Every eligible purchase earns you cash back automatically — up to 4% depending on your tier. Rewards go straight back into your Cashi balance, where they start earning interest immediately.</p>
+          </div>
+        </div>
+        <div class="faq-item so">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            <span>Can I withdraw to my bank account?</span>
+            <svg class="faq-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            <p>Yes. You can withdraw to your bank account at any time. Use Cashi's built-in off-ramp to send funds directly to your bank. Timing and fees depend on your region.</p>
+          </div>
+        </div>
+        <div class="faq-item so">
+          <button class="faq-q" onclick="toggleFAQ(this)">
+            <span>How does Cashi keep my money safe?</span>
+            <svg class="faq-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-a">
+            <p>Cashi uses biometric sign-in, advanced encryption, and hardware-backed security so only you can access your money. You get instant card freeze, customisable spending limits, and 24/7 fraud monitoring — all from the app.</p>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span>How can I get the virtual cashi card?</span>
-        <span class="faq-expand">+</span>
-      </div>
-      <div class="faq-a">
-        Join the waitlist with your email. When the app launches on the App Store and Google Play, you'll be among the first to get access to your virtual cashi card.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span>Where can I use cashi card for payments?</span>
-        <span class="faq-expand">+</span>
-      </div>
-      <div class="faq-a">
-        You can use your cashi card at any physical store, online retailer, or app that accepts major card networks. It also works for contactless payments via Apple Pay and Google Pay globally.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        <span>Is cashi safe to use?</span>
-        <span class="faq-expand">+</span>
-      </div>
-      <div class="faq-a">
-        Yes. Cashi uses industry-standard encryption and security practices. The financial products and services are issued and managed by licensed and regulated third parties. Availability is subject to local laws and applicable terms.
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ─── CTA ───────────────────────────────────────────────── -->
-<div class="cta-wrap" id="waitlist">
-  <div class="cta-card">
-    <div>
-      <h2 class="cta-title">Join the waitlist</h2>
-      <p class="cta-sub">Coming soon to the App Store and Google Play.</p>
-    </div>
-    <a href="#waitlist" class="btn-dark">Join Waitlist</a>
-  </div>
-</div>
-
-<!-- ─── FOOTER ────────────────────────────────────────────── -->
-<footer>
-  <div class="footer-wordmark" aria-label="cashi">cashi</div>
-  <div class="footer-bottom">
-    <div class="footer-copy">
-      Copyright &copy; 2026 Cashi All Rights Reserved<br>
-      Cashi provides technology services only, in which the financial products and services are issued and managed by licensed and regulated third parties. Availability is subject to local laws, regulations, and applicable terms.
-    </div>
-    <div class="footer-links">
-      <a href="/terms">Terms &amp; Conditions</a>
-      <a href="/privacy">Privacy Policy</a>
-      <a href="#faq-section">FAQ</a>
-      <a href="mailto:support@justcashi.com">Contact</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // FAQ accordion
-  function toggleFaq(el) {
-    const item = el.parentElement;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
-
-  // Form submission
-  function handleForm(e, id) {
-    e.preventDefault();
-    const form = document.getElementById(id);
-    const input = form.querySelector('input[type=email]');
-    if (input && input.value) {
-      input.value = '';
-      input.placeholder = 'You\'re on the list! ✓';
-      setTimeout(() => { input.placeholder = 'Enter your email'; }, 3000);
-    }
-  }
-
-  // Pause marquee on hover
-  const marquee = document.getElementById('marquee');
-  if (marquee) {
-    marquee.parentElement.addEventListener('mouseenter', () => marquee.style.animationPlayState = 'paused');
-    marquee.parentElement.addEventListener('mouseleave', () => marquee.style.animationPlayState = 'running');
-  }
-
-  // ── Password gate ──────────────────────────────────────────
-  (function() {
-    const PASS = 'Prakhar';
-    const SESSION_KEY = 'cashi_auth';
-
-    if (sessionStorage.getItem(SESSION_KEY) === '1') return;
-
-    // Hide page content until authenticated
-    document.body.style.overflow = 'hidden';
-
-    const overlay = document.createElement('div');
-    overlay.id = 'pw-overlay';
-    overlay.innerHTML = `
-      <div id="pw-box">
-        <div id="pw-logo">cashi</div>
-        <p id="pw-hint">Enter password to continue</p>
-        <input id="pw-input" type="password" placeholder="Password" autocomplete="current-password">
-        <button id="pw-btn">Enter</button>
-        <p id="pw-err" style="display:none;">Incorrect password. Try again.</p>
-      </div>`;
-    document.body.appendChild(overlay);
-
-    const style = document.createElement('style');
-    style.textContent = `
-      #pw-overlay {
-        position: fixed; inset: 0; z-index: 9999;
-        background: #f0f0f0;
-        display: flex; align-items: center; justify-content: center;
-      }
-      #pw-box {
-        background: #fff; border-radius: 24px;
-        padding: 48px 40px; width: 340px;
-        display: flex; flex-direction: column; align-items: center; gap: 16px;
-        box-shadow: 0 8px 40px rgba(0,0,0,0.1);
-        font-family: 'DM Sans', sans-serif;
-      }
-      #pw-logo {
-        font-family: 'DM Sans', sans-serif; font-size: 28px; font-weight: 800;
-        color: #1a1a1a; letter-spacing: -0.5px; margin-bottom: 4px;
-      }
-      #pw-hint { font-size: 14px; color: #888; }
-      #pw-input {
-        width: 100%; border: 1.5px solid #e0e0e0; border-radius: 100px;
-        padding: 12px 20px; font-size: 15px; font-family: 'DM Sans', sans-serif;
-        outline: none; transition: border-color 0.2s; text-align: center;
-      }
-      #pw-input:focus { border-color: #FF4500; }
-      #pw-btn {
-        width: 100%; background: #111; color: #fff; border: none;
-        border-radius: 100px; padding: 13px; font-size: 15px; font-weight: 600;
-        font-family: 'DM Sans', sans-serif; cursor: pointer; transition: background 0.2s;
-      }
-      #pw-btn:hover { background: #333; }
-      #pw-err { font-size: 13px; color: #e53e3e; margin-top: -8px; }
-    `;
-    document.head.appendChild(style);
-
-    function attempt() {
-      const val = document.getElementById('pw-input').value;
-      if (val === PASS) {
-        sessionStorage.setItem(SESSION_KEY, '1');
-        overlay.remove(); style.remove();
-        document.body.style.overflow = '';
-      } else {
-        document.getElementById('pw-err').style.display = 'block';
-        document.getElementById('pw-input').value = '';
-        document.getElementById('pw-input').focus();
-      }
-    }
-
-    document.getElementById('pw-btn').addEventListener('click', attempt);
-    document.getElementById('pw-input').addEventListener('keydown', e => {
-      if (e.key === 'Enter') attempt();
-    });
-    document.getElementById('pw-input').focus();
-  })();
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
