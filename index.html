@@ -721,6 +721,83 @@
     marquee.parentElement.addEventListener('mouseenter', () => marquee.style.animationPlayState = 'paused');
     marquee.parentElement.addEventListener('mouseleave', () => marquee.style.animationPlayState = 'running');
   }
+
+  // ── Password gate ──────────────────────────────────────────
+  (function() {
+    const PASS = 'Prakhar';
+    const SESSION_KEY = 'cashi_auth';
+
+    if (sessionStorage.getItem(SESSION_KEY) === '1') return;
+
+    // Hide page content until authenticated
+    document.body.style.overflow = 'hidden';
+
+    const overlay = document.createElement('div');
+    overlay.id = 'pw-overlay';
+    overlay.innerHTML = `
+      <div id="pw-box">
+        <div id="pw-logo">cashi</div>
+        <p id="pw-hint">Enter password to continue</p>
+        <input id="pw-input" type="password" placeholder="Password" autocomplete="current-password">
+        <button id="pw-btn">Enter</button>
+        <p id="pw-err" style="display:none;">Incorrect password. Try again.</p>
+      </div>`;
+    document.body.appendChild(overlay);
+
+    const style = document.createElement('style');
+    style.textContent = `
+      #pw-overlay {
+        position: fixed; inset: 0; z-index: 9999;
+        background: #f0f0f0;
+        display: flex; align-items: center; justify-content: center;
+      }
+      #pw-box {
+        background: #fff; border-radius: 24px;
+        padding: 48px 40px; width: 340px;
+        display: flex; flex-direction: column; align-items: center; gap: 16px;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+        font-family: 'DM Sans', sans-serif;
+      }
+      #pw-logo {
+        font-family: 'DM Sans', sans-serif; font-size: 28px; font-weight: 800;
+        color: #1a1a1a; letter-spacing: -0.5px; margin-bottom: 4px;
+      }
+      #pw-hint { font-size: 14px; color: #888; }
+      #pw-input {
+        width: 100%; border: 1.5px solid #e0e0e0; border-radius: 100px;
+        padding: 12px 20px; font-size: 15px; font-family: 'DM Sans', sans-serif;
+        outline: none; transition: border-color 0.2s; text-align: center;
+      }
+      #pw-input:focus { border-color: #FF4500; }
+      #pw-btn {
+        width: 100%; background: #111; color: #fff; border: none;
+        border-radius: 100px; padding: 13px; font-size: 15px; font-weight: 600;
+        font-family: 'DM Sans', sans-serif; cursor: pointer; transition: background 0.2s;
+      }
+      #pw-btn:hover { background: #333; }
+      #pw-err { font-size: 13px; color: #e53e3e; margin-top: -8px; }
+    `;
+    document.head.appendChild(style);
+
+    function attempt() {
+      const val = document.getElementById('pw-input').value;
+      if (val === PASS) {
+        sessionStorage.setItem(SESSION_KEY, '1');
+        overlay.remove(); style.remove();
+        document.body.style.overflow = '';
+      } else {
+        document.getElementById('pw-err').style.display = 'block';
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+      }
+    }
+
+    document.getElementById('pw-btn').addEventListener('click', attempt);
+    document.getElementById('pw-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') attempt();
+    });
+    document.getElementById('pw-input').focus();
+  })();
 </script>
 
 </body>
