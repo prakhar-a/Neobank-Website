@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cashi — The app for your money</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-icon">₵</span>
+        <span class="logo-text">cashi</span>
+      </a>
+      <div class="nav-actions">
+        <a href="#waitlist" class="btn btn-primary nav-cta">Join the waitlist</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+    </div>
+    <div class="container hero-content">
+      <p class="hero-eyebrow">Money that moves with you</p>
+      <h1 class="hero-headline">
+        The <span class="gradient-text">one app</span><br />
+        for your money
+      </h1>
+      <p class="hero-sub">Spend, save, and send stablecoins anywhere in the world — with up to 4% cash back and 10%+ yield.</p>
+      <form class="hero-form" id="hero-form">
+        <input type="email" placeholder="Enter your email" class="hero-input" required />
+        <button type="submit" class="btn btn-primary">Get early access</button>
+      </form>
+      <p class="hero-note">Accepted in 150+ countries · Apple Pay &amp; Google Pay ready</p>
+
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <span class="stat-value gradient-text">4%</span>
+          <span class="stat-label">Cash back</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-value gradient-text">10%+</span>
+          <span class="stat-label">Yield</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-value gradient-text">150+</span>
+          <span class="stat-label">Countries</span>
+        </div>
+      </div>
+
+      <div class="hero-card-visual">
+        <div class="card-mockup">
+          <div class="card-chip"></div>
+          <div class="card-logo">₵ cashi</div>
+          <div class="card-number">•••• •••• •••• 4291</div>
+          <div class="card-meta">
+            <span>JOHN DOE</span>
+            <span>12/28</span>
+          </div>
+          <div class="card-network">VISA</div>
+        </div>
+        <div class="card-glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE PILLS -->
+  <section class="features-bar">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">💸</div>
+          <h3>Spend while earning</h3>
+          <p>Your stablecoin balance earns yield the moment it lands. Spend instantly — no manual top-up needed.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎁</div>
+          <h3>Real rewards</h3>
+          <p>Earn up to 4% cash back on every purchase. Partner boosts can push rewards even higher.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>Borderless</h3>
+          <p>Shop online or tap to pay in 150+ countries. One card, zero FX hassle.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Zero-fee transfers</h3>
+          <p>Send USDT and USDC to anyone, anywhere, for free — on Ethereum, Solana, Arbitrum, Base &amp; more.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>Quick onboarding</h3>
+          <p>Verify in minutes, get a virtual card instantly, and add it to Apple or Google Pay right away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: EARN -->
+  <section class="content-block content-block-alt">
+    <div class="container content-block-inner">
+      <div class="content-block-text">
+        <p class="section-eyebrow">Your money works harder</p>
+        <h2>Earn <span class="gradient-text">10%+ yield</span> on your balance</h2>
+        <p>Unlike a traditional bank account, every dollar you hold in Cashi earns competitive stablecoin yield — automatically, with no lock-up. Withdraw whenever you want.</p>
+        <ul class="check-list">
+          <li>No minimum balance required</li>
+          <li>Yield accrues daily</li>
+          <li>Withdraw to any wallet anytime</li>
+        </ul>
+      </div>
+      <div class="content-block-visual">
+        <div class="yield-card">
+          <div class="yield-header">
+            <span>Current yield</span>
+            <span class="yield-badge">LIVE</span>
+          </div>
+          <div class="yield-rate gradient-text">10.4%</div>
+          <div class="yield-sub">APY on your USDT / USDC</div>
+          <div class="yield-bar-wrap">
+            <div class="yield-bar" style="width:72%"></div>
+          </div>
+          <div class="yield-compare">
+            <span>vs. average savings: 0.5%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: SPEND -->
+  <section class="content-block">
+    <div class="container content-block-inner reverse">
+      <div class="content-block-text">
+        <p class="section-eyebrow">Ka-ching!</p>
+        <h2>Spend crypto <span class="gradient-text">just like cash</span></h2>
+        <p>No more converting, no bridging, no confusion. Cashi connects your stablecoin wallet directly to a Visa card. Tap to pay at any merchant that accepts Visa — in-store or online.</p>
+        <ul class="check-list">
+          <li>Instant virtual card on sign-up</li>
+          <li>Physical card delivered to your door</li>
+          <li>Works with Apple Pay &amp; Google Pay</li>
+        </ul>
+      </div>
+      <div class="content-block-visual">
+        <div class="phones-wrap">
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              <div class="phone-header">
+                <span class="phone-balance-label">Available balance</span>
+                <div class="phone-balance">$4,213.50</div>
+              </div>
+              <div class="phone-transaction">
+                <div class="txn-row">
+                  <div class="txn-icon">☕</div>
+                  <div class="txn-info">
+                    <span class="txn-name">Blue Bottle Coffee</span>
+                    <span class="txn-date">Today, 9:14 AM</span>
+                  </div>
+                  <div class="txn-amount">-$6.50</div>
+                </div>
+                <div class="txn-row">
+                  <div class="txn-icon">🛒</div>
+                  <div class="txn-info">
+                    <span class="txn-name">Whole Foods Market</span>
+                    <span class="txn-date">Yesterday</span>
+                  </div>
+                  <div class="txn-amount">-$42.18</div>
+                </div>
+                <div class="txn-row">
+                  <div class="txn-icon">✈️</div>
+                  <div class="txn-info">
+                    <span class="txn-name">Airfare — Tokyo</span>
+                    <span class="txn-date">Mar 12</span>
+                  </div>
+                  <div class="txn-amount">-$892.00</div>
+                </div>
+              </div>
+              <div class="phone-cashback">
+                <span class="cashback-tag">+$38.20 cash back earned</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: CASHBACK -->
+  <section class="cashback-section">
+    <div class="container">
+      <div class="cashback-inner">
+        <p class="section-eyebrow center">Rewards that actually reward you</p>
+        <h2 class="center">Up to <span class="gradient-text">4% cash back</span><br />when you spend</h2>
+        <p class="cashback-sub center">Every swipe earns. Partner merchant boosts let you stack even more on top.</p>
+        <div class="cashback-grid">
+          <div class="cb-item">
+            <div class="cb-icon">🍔</div>
+            <span class="cb-label">Food &amp; Dining</span>
+            <span class="cb-rate">3%</span>
+          </div>
+          <div class="cb-item cb-featured">
+            <div class="cb-icon">✈️</div>
+            <span class="cb-label">Travel</span>
+            <span class="cb-rate gradient-text">4%</span>
+          </div>
+          <div class="cb-item">
+            <div class="cb-icon">🛍️</div>
+            <span class="cb-label">Shopping</span>
+            <span class="cb-rate">2%</span>
+          </div>
+          <div class="cb-item">
+            <div class="cb-icon">⛽</div>
+            <span class="cb-label">Gas &amp; Transport</span>
+            <span class="cb-rate">2%</span>
+          </div>
+          <div class="cb-item">
+            <div class="cb-icon">🏥</div>
+            <span class="cb-label">Health</span>
+            <span class="cb-rate">1.5%</span>
+          </div>
+          <div class="cb-item">
+            <div class="cb-icon">🎮</div>
+            <span class="cb-label">Entertainment</span>
+            <span class="cb-rate">1%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION: GLOBAL -->
+  <section class="content-block content-block-alt">
+    <div class="container content-block-inner">
+      <div class="content-block-text">
+        <p class="section-eyebrow">Built for the world</p>
+        <h2>Send money to <span class="gradient-text">anywhere, instantly</span></h2>
+        <p>Cashi supports multi-chain stablecoin transfers with zero fees. Whether you're paying a freelancer in Lagos or splitting a bill in Tokyo, it just works.</p>
+        <div class="chains-wrap">
+          <span class="chain-badge">Ethereum</span>
+          <span class="chain-badge">Solana</span>
+          <span class="chain-badge">Arbitrum</span>
+          <span class="chain-badge">Base</span>
+          <span class="chain-badge">BNB Chain</span>
+          <span class="chain-badge">Tron</span>
+          <span class="chain-badge">Polygon</span>
+        </div>
+      </div>
+      <div class="content-block-visual">
+        <div class="globe-wrap">
+          <div class="globe-card">
+            <div class="country-flags">
+              <span title="Argentina">🇦🇷</span>
+              <span title="Brazil">🇧🇷</span>
+              <span title="Egypt">🇪🇬</span>
+              <span title="Hong Kong">🇭🇰</span>
+              <span title="India">🇮🇳</span>
+              <span title="Mexico">🇲🇽</span>
+              <span title="Nigeria">🇳🇬</span>
+              <span title="Peru">🇵🇪</span>
+              <span title="Saudi Arabia">🇸🇦</span>
+              <span title="South Africa">🇿🇦</span>
+              <span title="Taiwan">🇹🇼</span>
+              <span title="UAE">🇦🇪</span>
+            </div>
+            <p class="globe-label">+ 138 more countries</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONBOARDING STEPS -->
+  <section class="steps-section">
+    <div class="container">
+      <p class="section-eyebrow center">Easy</p>
+      <h2 class="center">Up and running in <span class="gradient-text">minutes</span></h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3>Verify your identity</h3>
+          <p>Quick in-app KYC — take a selfie and scan your ID. Takes under 3 minutes.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3>Get your virtual card</h3>
+          <p>Your virtual Cashi Visa card is approved instantly and ready to use right away.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3>Add to your wallet</h3>
+          <p>Tap to add your card to Apple Pay or Google Pay. You're ready to spend anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY SECTION -->
+  <section class="security-section">
+    <div class="container">
+      <p class="section-eyebrow center">Peace of mind</p>
+      <h2 class="center">Your funds are <span class="gradient-text">safe with Cashi</span></h2>
+      <div class="security-grid">
+        <div class="security-card">
+          <div class="security-icon">🔒</div>
+          <h3>Audited protocols</h3>
+          <p>Cashi uses only audited, battle-tested smart contracts and custodians for all fund management.</p>
+        </div>
+        <div class="security-card">
+          <div class="security-icon">🛡️</div>
+          <h3>You control your funds</h3>
+          <p>Withdraw to any wallet at any time, no questions asked. Your money is never locked.</p>
+        </div>
+        <div class="security-card">
+          <div class="security-icon">👁️</div>
+          <h3>Real-time fraud monitoring</h3>
+          <p>24/7 transaction monitoring with instant card freeze capabilities right from the app.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST CTA -->
+  <section class="waitlist-section" id="waitlist">
+    <div class="container">
+      <div class="waitlist-inner">
+        <p class="section-eyebrow center">Be first</p>
+        <h2 class="center">Join the <span class="gradient-text">Cashi waitlist</span></h2>
+        <p class="waitlist-sub center">Get early access, exclusive rewards, and first dibs on our highest-yield tiers.</p>
+        <form class="waitlist-form" id="waitlist-form">
+          <input type="email" placeholder="your@email.com" class="waitlist-input" required />
+          <button type="submit" class="btn btn-primary btn-large">Reserve my spot</button>
+        </form>
+        <div class="waitlist-social">
+          <a href="#" class="social-link">Discord</a>
+          <span>·</span>
+          <a href="#" class="social-link">X / Twitter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="container">
+      <h2 class="center">Frequently asked<br /><span class="gradient-text">questions</span></h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Is Cashi a bank?
+            <span class="faq-arrow">↓</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. Cashi is a fintech platform, not a bank. Your funds are held in stablecoins (USDT/USDC) on audited protocols — not in a traditional bank account.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Where is the Cashi card accepted?
+            <span class="faq-arrow">↓</span>
+          </button>
+          <div class="faq-answer">
+            <p>Anywhere Visa is accepted — that's 150+ countries and millions of merchants worldwide, both online and in-store.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            How does cash back work?
+            <span class="faq-arrow">↓</span>
+          </button>
+          <div class="faq-answer">
+            <p>Every eligible purchase earns cash back automatically. Rewards are credited to your Cashi balance within 24 hours and start earning yield immediately.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Can I withdraw my funds anytime?
+            <span class="faq-arrow">↓</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes — withdraw to any compatible wallet at any time with no lock-up periods and no withdrawal fees.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            How is my money kept safe?
+            <span class="faq-arrow">↓</span>
+          </button>
+          <div class="faq-answer">
+            <p>Cashi uses audited smart contracts, real-time fraud monitoring, and gives you full card control (instant freeze/unfreeze) from the app.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Which blockchains are supported?
+            <span class="faq-arrow">↓</span>
+          </button>
+          <div class="faq-answer">
+            <p>Ethereum, Solana, Arbitrum, Base, BNB Chain, Tron, and Polygon — with more networks coming soon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-icon">₵</span>
+            <span class="logo-text">cashi</span>
+          </a>
+          <p class="footer-tagline">Money that moves with you.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="#">Card</a>
+            <a href="#">Yield</a>
+            <a href="#">Transfers</a>
+            <a href="#">Security</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+          </div>
+          <div class="footer-col">
+            <h4>Support</h4>
+            <a href="#">FAQ</a>
+            <a href="#">Help Center</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-legal">Cashi is a fintech service, not a bank. Stablecoin holdings are not FDIC-insured. Cryptocurrency involves risk. Please review our full terms before using the service.</p>
+        <div class="footer-meta">
+          <span>© 2026 Cashi Technologies Inc.</span>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
