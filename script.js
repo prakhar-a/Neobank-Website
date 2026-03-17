@@ -3,6 +3,39 @@
    Matches Plasma One interactions exactly
 ════════════════════════════════════════════ */
 
+/* ─── Password Gate ─── */
+(function () {
+  const PASS = 'cashi';
+  const SESSION_KEY = 'cashi_unlocked';
+  const gate  = document.getElementById('gate');
+  const form  = document.getElementById('gate-form');
+  const input = document.getElementById('gate-input');
+  const error = document.getElementById('gate-error');
+
+  function unlock() {
+    sessionStorage.setItem(SESSION_KEY, '1');
+    gate.classList.add('unlocked');
+  }
+
+  // Already unlocked this session — skip gate immediately
+  if (sessionStorage.getItem(SESSION_KEY)) {
+    gate.style.display = 'none';
+    return;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (input.value.trim().toLowerCase() === PASS) {
+      unlock();
+    } else {
+      input.value = '';
+      error.classList.add('visible');
+      form.classList.add('shake');
+      form.addEventListener('animationend', () => form.classList.remove('shake'), { once: true });
+    }
+  });
+})();
+
 /* ─── Scroll observer: fade-up reveal ─── */
 const soObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
