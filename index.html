@@ -3,20 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cashi — The One App for Your Money</title>
+  <title>Cashi — Spend, Save & Earn. All in one card.</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════ NAVBAR ═══ -->
+  <!-- ═══════════════════════ NAVBAR ═══ -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
-        <svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="14" cy="14" r="13.5" stroke="#1a1a1a" stroke-width="1"/>
-          <path d="M18 10.5C16.8 9.3 15.5 8.7 14 8.7C10.8 8.7 8.2 11.3 8.2 14.5C8.2 17.7 10.8 20.3 14 20.3C15.5 20.3 16.8 19.7 18 18.5" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Cashi official wordmark SVG -->
+        <svg class="cashi-wordmark" viewBox="0 0 1152 359" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M348.035 342.257C329.746 331.134 315.609 315.673 305.648 295.898C295.663 276.124 290.694 253.271 290.694 227.34C290.694 201.409 295.593 179.559 305.415 159.784C315.212 140.009 329.279 124.548 347.569 113.425C365.858 102.302 386.97 96.7285 410.905 96.7285C425.206 96.7285 438.176 98.5707 449.817 102.209C461.458 105.87 471.256 110.673 479.234 116.666C487.212 122.66 493.698 128.792 498.69 135.112V103.211H557.034V351.491H498.69V317.096C495.027 322.086 489.545 327.822 482.243 334.305C474.918 340.788 465.19 346.524 453.06 351.515C440.929 356.505 426.885 359 410.905 359C387.297 359 366.348 353.427 348.059 342.304L348.035 342.257ZM464.747 301.378C476.038 294.569 484.856 284.752 491.178 271.973C497.5 259.17 500.649 244.293 500.649 227.34C500.649 210.387 497.477 195.602 491.178 182.963C484.856 170.324 476.038 160.623 464.747 153.791C453.433 146.982 440.462 143.577 425.835 143.577C411.209 143.577 397.818 146.912 386.69 153.558C375.539 160.204 366.908 169.834 360.749 182.473C354.591 195.112 351.511 210.06 351.511 227.34C351.511 244.619 354.591 259.077 360.749 271.716C366.908 284.355 375.539 294.149 386.69 301.122C397.818 308.094 410.882 311.592 425.835 311.592C440.789 311.592 453.433 308.188 464.747 301.378Z" fill="currentColor"/>
+          <path d="M627.579 346.991C610.456 339.015 597.649 328.475 589.18 315.323C580.712 302.194 576.117 287.48 575.463 271.203H630.332C630.985 278.852 633.481 286.081 637.82 292.89C642.136 299.699 648.784 305.342 657.766 309.843C666.747 314.344 678.038 316.582 691.685 316.582C707.315 316.582 719.609 313.667 728.591 307.861C737.572 302.054 742.051 294.476 742.051 285.171C742.051 275.867 738.715 269.221 732.067 264.231C725.418 259.24 713.124 254.926 695.161 251.265L669.733 247.277C639.476 241.961 618.038 233.076 605.394 220.6C592.75 208.148 586.451 191.614 586.451 171C586.451 156.705 590.604 143.926 598.908 132.617C607.213 121.33 618.924 112.352 634.064 105.706C649.181 99.0602 666.397 95.7256 685.69 95.7256C720.612 95.7256 747.207 103.048 765.496 117.669C783.785 132.29 794.097 150.246 796.429 171.513H740.581C738.249 160.88 732.51 152.578 723.365 146.585C714.22 140.592 701.343 137.607 684.71 137.607C671.063 137.607 660.519 140.265 653.03 145.582C645.542 150.899 641.809 157.708 641.809 166.033C641.809 174.358 645.215 180.235 652.027 184.735C658.839 189.213 670.55 193.13 687.183 196.441L715.107 201.432C744.034 207.098 765.799 216.309 780.449 229.112C795.076 241.914 802.401 259.1 802.401 280.717C802.401 296.015 798.249 309.563 789.944 321.339C781.639 333.139 769.159 342.373 752.549 349.019C735.916 355.665 715.807 359 692.198 359C666.257 359 644.725 355.012 627.602 347.037L627.579 346.991Z" fill="currentColor"/>
+          <path d="M820.854 0H881.205V133.106C887.527 123.802 897.068 115.407 909.875 107.922C922.682 100.436 938.709 96.705 958.002 96.705C976.291 96.705 992.411 100.273 1006.38 107.432C1020.36 114.591 1031.32 125.388 1039.3 139.846C1047.28 154.304 1051.27 171.84 1051.27 192.43V351.468H990.918V202.411C990.918 188.443 988.912 177.156 984.922 168.505C980.933 159.877 975.101 153.557 967.473 149.57C959.821 145.582 950.513 143.577 939.549 143.577C919.603 143.577 904.883 150.479 895.412 164.261C885.94 178.066 881.205 196.581 881.205 219.854V351.468H820.854V0Z" fill="currentColor"/>
+          <path d="M1088.92 60.3269C1082.44 53.3545 1079.19 44.8663 1079.19 34.9089C1079.19 24.9516 1082.44 16.6266 1088.92 9.98064C1095.41 3.33465 1104.13 0 1115.09 0C1126.06 0 1135.37 3.40461 1142.02 10.2138C1148.66 17.0231 1152 25.2548 1152 34.8856C1152 44.5165 1148.66 53.3311 1142.02 60.3036C1135.37 67.2761 1126.39 70.7739 1115.09 70.7739C1103.8 70.7739 1095.38 67.2761 1088.92 60.3036V60.3269Z" fill="currentColor"/>
+          <path d="M1146.03 103.211H1085.68V351.491H1146.03V103.211Z" fill="currentColor"/>
+          <path d="M197.171 190.612H274.528C262.421 135.112 224.675 96.7051 181.658 96.7051H138.85C167.638 115.5 188.913 149.5 197.171 190.612Z" fill="currentColor"/>
+          <path d="M138.85 358.953H181.658C224.675 358.953 262.421 320.57 274.528 265.047H197.171C188.936 306.159 167.638 340.135 138.85 358.953Z" fill="currentColor"/>
+          <path d="M77.6367 227.829C77.6367 182.24 94.1998 140.265 122.171 114.358C111.486 108.201 100.172 105.077 88.4844 105.077C39.6815 105.1 0 160.157 0 227.829C0 295.502 39.6815 350.582 88.4611 350.582C100.149 350.582 111.463 347.457 122.147 341.301C94.1765 315.416 77.6134 273.418 77.6134 227.853L77.6367 227.829Z" fill="currentColor"/>
         </svg>
-        <span class="logo-text">cashi</span>
       </a>
       <div class="nav-actions">
         <a href="#waitlist" class="nav-cta">Join the waitlist</a>
@@ -24,7 +30,7 @@
     </div>
   </nav>
 
-  <!-- ═══════════════════════════════════════════ HERO ═══ -->
+  <!-- ═══════════════════════ HERO ═══ -->
   <section class="hero so">
     <div class="hero-content">
       <h1 class="hero-headline so">The <em>one</em> app for<br>your money</h1>
@@ -37,20 +43,18 @@
       </div>
       <div class="hero-stats so">
         <div class="hero-stat">
-          <span class="stat-bold">4%</span>&nbsp;Cash back
+          <span class="stat-bold">4%</span>&nbsp;back on purchases
         </div>
         <div class="hero-stat-divider"></div>
         <div class="hero-stat">
-          <span class="stat-bold">Accepted</span>&nbsp;in 150+ countries
+          Works in&nbsp;<span class="stat-bold">150+ countries</span>
         </div>
         <div class="hero-stat-divider"></div>
         <div class="hero-stat">
-          10%+&nbsp;<span class="stat-bold">Yield</span>
+          <span class="stat-bold">10%+</span>&nbsp;interest on your balance
         </div>
       </div>
     </div>
-
-    <!-- Parallax landscape layers -->
     <div class="hero-landscape" id="hero-landscape">
       <img src="assets/images/hero-bg.avif" alt="" class="land-bg" id="land-bg" />
       <img src="assets/images/hero-midground.avif" alt="" class="land-mid" id="land-mid" />
@@ -58,7 +62,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════ FASTER/CHEAPER/BETTER ═══ -->
+  <!-- ═══════════════════════ FASTER / CHEAPER / BETTER ═══ -->
   <section class="fcb-section">
     <div class="fcb-content">
       <h2 class="fcb-line fcb-1 so">Faster.</h2>
@@ -72,38 +76,38 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════ FEATURES ═══ -->
+  <!-- ═══════════════════════ FEATURES ═══ -->
   <section class="features-section">
     <div class="features-grid">
       <div class="feature-item so">
         <img src="assets/images/feature-icon-1.svg" alt="" class="feat-icon" />
-        <h3>Spend while you earn</h3>
-        <p>Pay with your stablecoin balance as it earns, with instant availability.</p>
+        <h3>Your money earns as you spend</h3>
+        <p>Your balance earns interest automatically. Spend any time — no top-ups or transfers needed.</p>
       </div>
       <div class="feature-item so">
         <img src="assets/images/feature-icon-2.svg" alt="" class="feat-icon" />
-        <h3>Real rewards</h3>
-        <p>Earn up to 4% cash back, with extra boosts at partners.</p>
+        <h3>Up to 4% back on purchases</h3>
+        <p>Get money back on everything you buy. Extra rewards at partner merchants.</p>
       </div>
       <div class="feature-item so">
         <img src="assets/images/feature-icon-3.svg" alt="" class="feat-icon" />
-        <h3>Borderless coverage</h3>
-        <p>Tap, swipe, or buy online in over 150+ countries.</p>
+        <h3>Works in 150+ countries</h3>
+        <p>Use your Cashi card anywhere Visa is accepted — online, in-store, wherever you are.</p>
       </div>
       <div class="feature-item so">
         <img src="assets/images/feature-icon-4.svg" alt="" class="feat-icon" />
-        <h3>Zero-fee USD₮ transfers</h3>
-        <p>Send USD₮ anywhere with no fees whatsoever.</p>
+        <h3>Free instant transfers</h3>
+        <p>Send money to anyone, anywhere, instantly. No fees, no delays, ever.</p>
       </div>
       <div class="feature-item so">
         <img src="assets/images/feature-icon-5.svg" alt="" class="feat-icon" />
-        <h3>Onboard in minutes</h3>
-        <p>Sign up, receive a virtual card and start spending in minutes, not days.</p>
+        <h3>Set up in minutes</h3>
+        <p>Verify your identity, get your virtual card, and start spending — in under 5 minutes.</p>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════ ONE APP ONE CARD ═══ -->
+  <!-- ═══════════════════════ ONE APP ONE CARD ═══ -->
   <section class="card-section">
     <div class="card-section-inner">
       <div class="card-section-left">
@@ -111,16 +115,16 @@
         <div class="card-carousel" id="cardCarousel">
           <div class="carousel-items" id="carouselItems">
             <div class="carousel-item active" data-index="0">
-              <img src="assets/images/card-screen-1.avif" alt="Keep earning" />
-              <p>Keep earning on what you don't spend. Withdraw or allocate anytime.</p>
+              <img src="assets/images/card-screen-1.avif" alt="Earning balance" />
+              <p>Your balance keeps growing until the moment you spend it.</p>
             </div>
             <div class="carousel-item" data-index="1">
               <img src="assets/images/card-screen-2.avif" alt="Spend directly" />
-              <p>Spend directly from your stablecoin balance. No manual top ups.</p>
+              <p>Pay directly from your balance. No top-ups or manual transfers.</p>
             </div>
             <div class="carousel-item" data-index="2">
               <img src="assets/images/card-screen-3.avif" alt="Virtual card" />
-              <p>Generate a virtual card instantly, and order your premium physical card in-app.</p>
+              <p>Get a virtual card instantly. Your premium physical card delivered to your door.</p>
             </div>
           </div>
           <div class="carousel-nav">
@@ -134,17 +138,17 @@
         </div>
       </div>
       <div class="card-section-right">
-        <img src="assets/images/phone-rock.avif" alt="Cashi app on phone" class="phone-rock-img" />
+        <img src="assets/images/phone-rock.avif" alt="Cashi app" class="phone-rock-img" />
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════ REWARDS / 4% ═══ -->
+  <!-- ═══════════════════════ REWARDS / 4% ═══ -->
   <section class="rewards-section">
     <div class="rewards-inner">
       <div class="rewards-label-row so">
         <span class="section-label">Rewards</span>
-        <span class="rewards-sub">The best cash back when you spend</span>
+        <span class="rewards-sub">Money back on everything you buy</span>
       </div>
       <div class="big-stat so">
         <div class="big-stat-number cashback-shine">4%</div>
@@ -152,7 +156,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════ EARN / 10%+ ═══ -->
+  <!-- ═══════════════════════ EARN / 10%+ ═══ -->
   <section class="earn-section">
     <div class="earn-bg-wrap">
       <img src="assets/images/section-off.avif" alt="" class="earn-bg-img earn-off" id="earnOff" />
@@ -160,9 +164,9 @@
     </div>
     <div class="earn-content">
       <div class="earn-top so">
-        <span class="section-label light">Earn</span>
-        <h2 class="earn-heading so">Your money<br><em>never sleeps</em></h2>
-        <p class="earn-sub so">Your stablecoins should work until the moment you use them. Pay against your earning stablecoin balance with instant availability.</p>
+        <span class="section-label light">Interest</span>
+        <h2 class="earn-heading so">Your balance grows<br><em>while you sleep</em></h2>
+        <p class="earn-sub so">Every pound in your account earns 10%+ interest automatically — no action needed. Withdraw or spend it any time, no lock-up.</p>
       </div>
       <div class="earn-big so">
         <div class="big-stat-number earn-number">10%+</div>
@@ -170,11 +174,11 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════ GET STARTED ═══ -->
+  <!-- ═══════════════════════ GET STARTED ═══ -->
   <section class="onboard-section">
     <div class="onboard-top so">
-      <span class="section-label light">Get started in minutes, not hours</span>
-      <p class="onboard-desc so">Download the app, complete quick verification, deposit stablecoins, and start spending immediately.</p>
+      <span class="section-label light">Up and running in minutes</span>
+      <p class="onboard-desc so">Download the app, verify your identity quickly, add money, and start spending right away. No paperwork.</p>
     </div>
     <div class="onboard-phone-wrap">
       <img src="assets/images/iphone-2.avif" alt="Cashi app" class="onboard-phone so" />
@@ -184,8 +188,20 @@
         <div class="step-line"></div>
         <div class="step-info">
           <span class="step-num">Step 1</span>
-          <img src="assets/images/step-1.avif" alt="Step 1" class="step-img" />
-          <p class="step-label">Simple in-app verification</p>
+          <div class="step-mockup">
+            <div class="step-mock-logo">
+              <svg viewBox="0 0 80 24" fill="none" width="64"><text x="0" y="18" font-family="DM Sans, sans-serif" font-size="16" font-weight="600" fill="rgba(255,255,255,0.9)">cashi</text></svg>
+            </div>
+            <p class="step-mock-sub">Create your free account</p>
+            <div class="step-mock-field">Email address</div>
+            <div class="step-mock-btn">Continue</div>
+            <p class="step-mock-or">or</p>
+            <div class="step-mock-apple">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="white"><path d="M7.045 3.09C7.69 3.09 8.5 2.62 9 1.93 9.45 1.3 9.76.44 9.76 0c-.04.01-1.06.04-1.65.73C7.67.99 7.22 1.8 7.22 2.67c0 .09.01.19.02.28-.06.01-.12.01-.2.01zm-2.7 7.87c.63 0 .9-.41 1.69-.41.79 0 .96.4 1.66.4.69 0 1.15-.64 1.58-1.26.47-.71.67-1.4.68-1.43-.05-.01-1.31-.52-1.31-1.95 0-1.24.99-1.82 1.04-1.85-.59-.85-1.5-.88-1.75-.88-.78 0-1.4.47-1.8.47-.43 0-1-.44-1.67-.44C3.33 5.52 2 6.66 2 8.77c0 1.23.48 2.53.9 3.37.36.71.9 1.49 1.45 1.49z"/></svg>
+              Continue with Apple
+            </div>
+          </div>
+          <p class="step-label">Quick identity check</p>
         </div>
       </div>
       <div class="onboard-step so">
@@ -193,7 +209,7 @@
         <div class="step-info">
           <span class="step-num">Step 2</span>
           <img src="assets/images/step-2.avif" alt="Step 2" class="step-img" />
-          <p class="step-label active-step">Instant virtual card on approval</p>
+          <p class="step-label active-step">Virtual card issued instantly</p>
         </div>
       </div>
       <div class="onboard-step so">
@@ -201,13 +217,13 @@
         <div class="step-info">
           <span class="step-num">Step 3</span>
           <img src="assets/images/step-3.avif" alt="Step 3" class="step-img" />
-          <p class="step-label">Add to Apple Pay and Google Pay</p>
+          <p class="step-label">Add to Apple Pay or Google Pay</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════ SECURITY ═══ -->
+  <!-- ═══════════════════════ SECURITY ═══ -->
   <section class="security-section">
     <div class="security-card so">
       <h2 class="security-heading">Security that protects<br>every payment</h2>
@@ -215,18 +231,18 @@
         <div class="security-col">
           <img src="assets/images/security-icon-1.svg" alt="" class="sec-icon" />
           <h3>Your money is our priority</h3>
-          <p>Cashi is independently audited, continuously monitored, and protected by strong controls.</p>
+          <p>Cashi is independently audited, continuously monitored, and protected by bank-grade security controls.</p>
         </div>
         <div class="security-col">
           <img src="assets/images/security-icon-2.svg" alt="" class="sec-icon" />
-          <h3>You control your money, not us</h3>
-          <p>Manage how your card is used, get instant alerts, and freeze or unfreeze it with a tap.</p>
+          <h3>You're always in control</h3>
+          <p>Manage how your card is used, get real-time alerts, and freeze or unfreeze it with a tap.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════ CTA ═══ -->
+  <!-- ═══════════════════════ CTA ═══ -->
   <section class="cta-section" id="waitlist">
     <div class="cta-video-wrap">
       <video class="cta-video" autoplay muted loop playsinline>
@@ -235,23 +251,28 @@
     </div>
     <div class="cta-content">
       <div class="cta-logo">
-        <svg class="logo-icon" width="28" height="28" viewBox="0 0 28 28" fill="none">
-          <circle cx="14" cy="14" r="13.5" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
-          <path d="M18 10.5C16.8 9.3 15.5 8.7 14 8.7C10.8 8.7 8.2 11.3 8.2 14.5C8.2 17.7 10.8 20.3 14 20.3C15.5 20.3 16.8 19.7 18 18.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        <svg class="cta-wordmark" viewBox="0 0 1152 359" fill="none">
+          <path d="M348.035 342.257C329.746 331.134 315.609 315.673 305.648 295.898C295.663 276.124 290.694 253.271 290.694 227.34C290.694 201.409 295.593 179.559 305.415 159.784C315.212 140.009 329.279 124.548 347.569 113.425C365.858 102.302 386.97 96.7285 410.905 96.7285C425.206 96.7285 438.176 98.5707 449.817 102.209C461.458 105.87 471.256 110.673 479.234 116.666C487.212 122.66 493.698 128.792 498.69 135.112V103.211H557.034V351.491H498.69V317.096C495.027 322.086 489.545 327.822 482.243 334.305C474.918 340.788 465.19 346.524 453.06 351.515C440.929 356.505 426.885 359 410.905 359C387.297 359 366.348 353.427 348.059 342.304L348.035 342.257ZM464.747 301.378C476.038 294.569 484.856 284.752 491.178 271.973C497.5 259.17 500.649 244.293 500.649 227.34C500.649 210.387 497.477 195.602 491.178 182.963C484.856 170.324 476.038 160.623 464.747 153.791C453.433 146.982 440.462 143.577 425.835 143.577C411.209 143.577 397.818 146.912 386.69 153.558C375.539 160.204 366.908 169.834 360.749 182.473C354.591 195.112 351.511 210.06 351.511 227.34C351.511 244.619 354.591 259.077 360.749 271.716C366.908 284.355 375.539 294.149 386.69 301.122C397.818 308.094 410.882 311.592 425.835 311.592C440.789 311.592 453.433 308.188 464.747 301.378Z" fill="currentColor"/>
+          <path d="M627.579 346.991C610.456 339.015 597.649 328.475 589.18 315.323C580.712 302.194 576.117 287.48 575.463 271.203H630.332C630.985 278.852 633.481 286.081 637.82 292.89C642.136 299.699 648.784 305.342 657.766 309.843C666.747 314.344 678.038 316.582 691.685 316.582C707.315 316.582 719.609 313.667 728.591 307.861C737.572 302.054 742.051 294.476 742.051 285.171C742.051 275.867 738.715 269.221 732.067 264.231C725.418 259.24 713.124 254.926 695.161 251.265L669.733 247.277C639.476 241.961 618.038 233.076 605.394 220.6C592.75 208.148 586.451 191.614 586.451 171C586.451 156.705 590.604 143.926 598.908 132.617C607.213 121.33 618.924 112.352 634.064 105.706C649.181 99.0602 666.397 95.7256 685.69 95.7256C720.612 95.7256 747.207 103.048 765.496 117.669C783.785 132.29 794.097 150.246 796.429 171.513H740.581C738.249 160.88 732.51 152.578 723.365 146.585C714.22 140.592 701.343 137.607 684.71 137.607C671.063 137.607 660.519 140.265 653.03 145.582C645.542 150.899 641.809 157.708 641.809 166.033C641.809 174.358 645.215 180.235 652.027 184.735C658.839 189.213 670.55 193.13 687.183 196.441L715.107 201.432C744.034 207.098 765.799 216.309 780.449 229.112C795.076 241.914 802.401 259.1 802.401 280.717C802.401 296.015 798.249 309.563 789.944 321.339C781.639 333.139 769.159 342.373 752.549 349.019C735.916 355.665 715.807 359 692.198 359C666.257 359 644.725 355.012 627.602 347.037L627.579 346.991Z" fill="currentColor"/>
+          <path d="M820.854 0H881.205V133.106C887.527 123.802 897.068 115.407 909.875 107.922C922.682 100.436 938.709 96.705 958.002 96.705C976.291 96.705 992.411 100.273 1006.38 107.432C1020.36 114.591 1031.32 125.388 1039.3 139.846C1047.28 154.304 1051.27 171.84 1051.27 192.43V351.468H990.918V202.411C990.918 188.443 988.912 177.156 984.922 168.505C980.933 159.877 975.101 153.557 967.473 149.57C959.821 145.582 950.513 143.577 939.549 143.577C919.603 143.577 904.883 150.479 895.412 164.261C885.94 178.066 881.205 196.581 881.205 219.854V351.468H820.854V0Z" fill="currentColor"/>
+          <path d="M1088.92 60.3269C1082.44 53.3545 1079.19 44.8663 1079.19 34.9089C1079.19 24.9516 1082.44 16.6266 1088.92 9.98064C1095.41 3.33465 1104.13 0 1115.09 0C1126.06 0 1135.37 3.40461 1142.02 10.2138C1148.66 17.0231 1152 25.2548 1152 34.8856C1152 44.5165 1148.66 53.3311 1142.02 60.3036C1135.37 67.2761 1126.39 70.7739 1115.09 70.7739C1103.8 70.7739 1095.38 67.2761 1088.92 60.3036V60.3269Z" fill="currentColor"/>
+          <path d="M1146.03 103.211H1085.68V351.491H1146.03V103.211Z" fill="currentColor"/>
+          <path d="M197.171 190.612H274.528C262.421 135.112 224.675 96.7051 181.658 96.7051H138.85C167.638 115.5 188.913 149.5 197.171 190.612Z" fill="currentColor"/>
+          <path d="M138.85 358.953H181.658C224.675 358.953 262.421 320.57 274.528 265.047H197.171C188.936 306.159 167.638 340.135 138.85 358.953Z" fill="currentColor"/>
+          <path d="M77.6367 227.829C77.6367 182.24 94.1998 140.265 122.171 114.358C111.486 108.201 100.172 105.077 88.4844 105.077C39.6815 105.1 0 160.157 0 227.829C0 295.502 39.6815 350.582 88.4611 350.582C100.149 350.582 111.463 347.457 122.147 341.301C94.1765 315.416 77.6134 273.418 77.6134 227.853L77.6367 227.829Z" fill="currentColor"/>
         </svg>
-        <span class="cta-logo-text">cashi</span>
       </div>
-      <h2 class="cta-heading so">Make stablecoins your<br>everyday money</h2>
-      <p class="cta-sub so">Join the waitlist for early access to Cashi.</p>
+      <h2 class="cta-heading so">The smarter way to<br>spend, save &amp; earn</h2>
+      <p class="cta-sub so">Be among the first to get early access to Cashi.</p>
       <form class="cta-form so" id="cta-form">
         <input type="email" placeholder="Enter your email" class="cta-input" />
         <button type="submit" class="cta-btn">Join the waitlist</button>
       </form>
-      <p class="cta-note">Secure early access and unlock unique rewards.</p>
+      <p class="cta-note">No spam. Early access perks included.</p>
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════ FAQ ═══ -->
+  <!-- ═══════════════════════ FAQ ═══ -->
   <section class="faq-section">
     <div class="faq-inner">
       <h2 class="faq-heading so">Frequently asked questions</h2>
@@ -262,7 +283,7 @@
             <svg class="faq-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="faq-a">
-            <p>No. Cashi is a financial technology company, not a regulated financial institution, bank or a money services business. The Cashi Card is issued by Signify Holdings, Inc. pursuant to a license from Visa.</p>
+            <p>No. Cashi is a financial technology company, not a bank. Your money is held securely and protected — the Cashi Card is issued by Signify Holdings, Inc. under a Visa licence.</p>
           </div>
         </div>
         <div class="faq-item so">
@@ -271,34 +292,34 @@
             <svg class="faq-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="faq-a">
-            <p>Anywhere where Visa cards are accepted, online and in store.</p>
+            <p>Anywhere Visa is accepted — that's 150+ countries and tens of millions of merchants worldwide, online and in-store.</p>
           </div>
         </div>
         <div class="faq-item so">
           <button class="faq-q" onclick="toggleFAQ(this)">
-            <span>How do rewards work?</span>
+            <span>How does the cash back work?</span>
             <svg class="faq-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="faq-a">
-            <p>With every purchase made using your Cashi card, you'll earn cash back. Exact cash back percentage will depend on your tier, with the highest being 4%. Your stablecoins on Cashi will earn 10%+ yield through opportunities that exist within the Cashi onchain ecosystem.</p>
+            <p>Every eligible purchase earns you cash back automatically — up to 4% depending on your tier. Rewards go straight back into your Cashi balance, where they start earning interest immediately.</p>
           </div>
         </div>
         <div class="faq-item so">
           <button class="faq-q" onclick="toggleFAQ(this)">
-            <span>Can I withdraw from Cashi to my bank account?</span>
+            <span>Can I withdraw to my bank account?</span>
             <svg class="faq-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="faq-a">
-            <p>Yes, you will be able to withdraw to a bank account. Use connected off‑ramps to send funds to your bank. Timing and fees depend on your region and partner.</p>
+            <p>Yes. You can withdraw to your bank account at any time. Use Cashi's built-in off-ramp to send funds directly to your bank. Timing and fees depend on your region.</p>
           </div>
         </div>
         <div class="faq-item so">
           <button class="faq-q" onclick="toggleFAQ(this)">
-            <span>How does Cashi prioritize security?</span>
+            <span>How does Cashi keep my money safe?</span>
             <svg class="faq-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="faq-a">
-            <p>Cashi protects your funds with layered security, including biometric sign-in and advanced encryption. Instead of seed phrases, we use hardware-backed keys so only you can access your money. You stay in control with instant card freeze, customisable spending limits, and real-time transaction alerts.</p>
+            <p>Cashi uses biometric sign-in, advanced encryption, and hardware-backed security so only you can access your money. You get instant card freeze, customisable spending limits, and 24/7 fraud monitoring — all from the app.</p>
           </div>
         </div>
       </div>
